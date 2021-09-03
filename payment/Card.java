@@ -5,7 +5,9 @@
  */
 package democonsole;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -14,22 +16,36 @@ import java.util.Date;
 public class Card {
     
     private String cardNum;
-    private Date expiryDate;
+    private Calendar expiryDate;
     private int cvv;
+    private double balance;
     
-    private static boolean credit;
+    private boolean credit;
+    public static boolean validateCard;
 
-    public Card(String cardNum, Date expiryDate, int cvv) {
+    public Card(String cardNum, Calendar expiryDate, int cvv) {
         this.cardNum = cardNum;
         this.expiryDate = expiryDate;
         this.cvv = cvv;
+        //this.balance = payment.generateRandomBalance();
     }
 
-    
-    
     public String toString(){
-        return String.format("%-20s %-15s %-5d", cardNum,expiryDate,cvv);
+        return String.format("%-20s %-15s %-5d ", cardNum,expiryDate,cvv);
         
+    }   
+    
+    public static boolean validateCard(Card card) {
+        Pattern p = Pattern.compile("^\\d{4} \\d{4} \\d{4} \\d{4}$");
+        Matcher m = p.matcher(card.cardNum);
+        boolean validCardNum = m.matches();
+
+        Calendar c = Calendar.getInstance();
+        boolean validDate = (c.get(Calendar.DAY_OF_MONTH) >= card.expiryDate.get(Calendar.DAY_OF_MONTH));
+
+        boolean validCvv = Integer.toString(card.cvv).length() == 3;
+
+        return validCardNum && validDate && validCvv;
     }
     
 }
