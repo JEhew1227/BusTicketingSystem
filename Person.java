@@ -6,31 +6,18 @@
 
 package person;
 
-import java.util.Scanner;
-
 /**
  *
  * @author User
  */
-interface PersonInterface {
-        String name = "Name:";
-        
-        void addName();    
-}
 
-public class Person implements PersonInterface{
 
-public static void main(String[] args){
-       
-       System.out.println(name);
-
-       Person p = new Person();
-       p.addName();
-}
-
-public void addName(){
-Scanner scanner = new Scanner (System.in);
-String name = scanner.nextLine();
+public class Person(){
+    private String name;
+    private String 
+    
+    public Person(String name) {
+        this.name = name;
+    }   
 }
        
-}
