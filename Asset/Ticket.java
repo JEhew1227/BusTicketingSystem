@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,14 +7,13 @@
 
 package ticket;
 
-import java.util.Scanner;
 
 /**
  *
  * @author User
  */
 
-public class Ticket(Schedule schedule) {
+public class Ticket {
  
     private double amount = 10;
     private int quantity;
@@ -33,7 +33,7 @@ public class Ticket(Schedule schedule) {
         }
     }
 
-    public Ticket getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
     
@@ -41,7 +41,7 @@ public class Ticket(Schedule schedule) {
         this.quantity = quantity;
     }
     
-    public Ticket getPaidStatus() {
+    public boolean isPaidStatus() {
         return paidStatus;
     }
    
