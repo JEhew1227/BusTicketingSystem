@@ -30,6 +30,24 @@ public class Card {
         //this.balance = payment.generateRandomBalance();
     }
 
+    public String getCardNum() {
+        return cardNum;
+    }
+
+    public void setCardNum(String cardNum) {
+        this.cardNum = cardNum;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+    
+    
+
     public String toString(){
         return String.format("%-20s %-15s %-5d ", cardNum,expiryDate,cvv);
         
