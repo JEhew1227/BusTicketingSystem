@@ -41,9 +41,11 @@ public class Schedule {
         System.out.println(scheduleList);
     }
 
-    @Override
+   @Override
     public String toString() {
-        return "Schedule{" + "startLocation=" + startLocation + ", destination=" + destination + ", dateTime=" + dateTime + '}';
+        return "Start location :" + startLocation + 
+               "Destination    :" + destination + 
+               "Date time      :" + dateTime;
     }
     
     
