@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package Registration;
-import Payment.Card;
-import Personnel.Customer;
-import java.util.ArrayList;
+import payment.Card;
+import Personnal.Customer;
 import java.util.Calendar;
 import java.util.Scanner;
 /**

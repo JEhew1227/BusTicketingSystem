@@ -3,61 +3,51 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaassignment;
+package payment;
+import Asset.Ticket;
+import Personnal.Customer;
 import java.io.IOException;
-import static java.lang.System.exit;
 import java.util.Scanner;
 /**
  *
  * @author KUNG WEI XIN
  */
 public interface Payment {
-    public static void cls() throws IOException, InterruptedException{
-         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-    }
-
     
-    public static boolean performPayment(Customer customer, Ticket ticket, Card card) throws IOException, InterruptedException{
-        Scanner scan = new Scanner(System.in);
-        Scanner console = new Scanner(System.in);
+
+    //work in progress
+    public static boolean performPayment(Customer customer, Ticket ticket){
         //display get ticket information
-        System.out.println("Ticket Price: "+ticket.getAmount());
-        System.out.println("Ticket Quantity: "+ticket.getQuantity());
-        System.out.println("Total Payable: "+Transaction.calTotal(ticket));
-        //Confirm  with user
-        System.out.println("Confirm Pay?(Y/N) :");
-        char choice;
-        choice = scan.next().charAt(0);
+        Scanner scan = new Scanner(System.in);
+        double total = ticket.calTotal();
+        System.out.println(ticket.toString());
         
-        //if user confirm
-        if(choice == 'Y'||choice == 'y'){
-            //get payment amount from user
-            double balance;
-            balance = generateRandomBalance();
-            //set Balance to Card
-            card.setCardBalance(balance);
-            //Display Card Number and balance
-            System.out.println("Card Number: "+card.getCardNum());
-            System.out.println("Card balance: "+card.getBalance());
-            balance -=Transaction.calTotal(ticket);
-            //Enter to continue
-            System.out.println("--Press Enter to Continue--");
-            console.next();
-            
-            
-            //clear screen
-            cls();
-            System.out.println("--Payment Completed--");
-            System.out.println("Amount Paid: "+calTotal(ticket));
-            System.out.println("Balance After :"+balance);
-            return true;
-        }else{
-            //Else abort the payment
-            System.out.println("Payment Cancelled");
-            exit(-1);
+        
+        System.out.println("Is this information correct?");
+        char choice = scan.next().charAt(0);
+        if(choice != 'Y'){
             return false;
         }
-      
+        
+        String otp = generateOTP();
+        System.out.println("OTP: "+otp);
+        System.out.print("Enter Your OTP code: ");
+        String inputOTP = scan.next();
+        if(!inputOTP.equals(otp)){
+            return false;
+        }
+        System.out.println("Enter total: ");
+        double inputTotal = scan.nextDouble();
+        if(inputTotal < total){
+            return false;
+        }
+        
+        double balance = customer.getCard().getBalance();
+        balance -= total;
+        customer.getCard().setBalance(balance);
+        return true;
+
+        
     }
     
     public static String generateOTP(){

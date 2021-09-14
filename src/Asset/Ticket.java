@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-package ticket;
+package Asset;
 
 
 /**
@@ -14,12 +14,19 @@ package ticket;
  */
 
 public class Ticket {
- 
-    private double amount = 10;
+    private final static double DEFAULT_PRICE = 10;
+    private double amount ;
     private int quantity;
     private boolean paidStatus;
     
+    public Ticket(double amount, int quantity, boolean paidStatus) {
+        this.amount = amount;
+        this.quantity = quantity;
+        this.paidStatus = paidStatus;
+    }
+
     public Ticket(int quantity, boolean paidStatus) {
+        this.amount = DEFAULT_PRICE;
         this.quantity = quantity;
         this.paidStatus = paidStatus;
     }
@@ -48,5 +55,19 @@ public class Ticket {
     public void setPaidStatus(boolean paidStatus) {
         this.paidStatus = paidStatus;
     }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public double calTotal() {
+        return this.amount * this.quantity;
+    }
+    
+    
 }
 

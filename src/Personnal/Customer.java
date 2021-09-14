@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Personnel;
+package Personnal;
 
 import Asset.Schedule;
 import Asset.Ticket;
 import Asset.Bus;
-import Payment.Card;
-import Payment.Payment;
+import payment.Card;
+import payment.Payment;
 import Reservation.Reservation;
 
+import Asset.Bus;
+import Personnal.Person;
+import Reservation.Reservation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -35,13 +38,21 @@ public class Customer extends Person implements Reservation {
     private static int nextID = 1000;
 
     public Customer(Person person, String password, Card card) {
-        super(person.name);
+        super(person.getName());
         this.custName = custName;
         this.custID = "CD" + Customer.nextID;
         this.password = password;
         Customer.nextID++;
 
     }
+
+    public Customer(String name, String password, Card card) {
+        super(name);
+        this.password = password;
+        this.card = card;
+    }
+    
+    
 
     public static void add(Customer customer) {
         customerList.add(customer);
@@ -111,6 +122,10 @@ public class Customer extends Person implements Reservation {
         this.bus = bus;
     }
 
+    public Card getCard(){
+        return this.card;
+    }
+    
     public String toString() {
         return String.format("%-30s %-10s %-5d %-15s %-15s",
                 custName, custID, reserveSeatNo, bus, ticket);
@@ -137,7 +152,7 @@ public class Customer extends Person implements Reservation {
     public void reserveTicket() {
         Scanner scanner = new Scanner(System.in);
         int selection;
-        int destination;
+        int destination = 0;
         char matrix[][] = new char[11][10];
 
         do {
@@ -305,16 +320,14 @@ public class Customer extends Person implements Reservation {
         }
 
     }
-
+//work in progress
    @Override
     public void payTicket() {
-        performPayment(this, ticket);
-
-        if (ticket.verifyPaidStatus().paidStatus == true) {
-            Ticket ticket;
-        } else {
-            performTicket(this, ticket);
+        if(ticket.isPaidStatus()){
+            return ;
         }
+        boolean paid = Payment.performPayment(this, ticket);
+        ticket.setPaidStatus(paid);
     }
     
 }

@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package busticketingsystem;
+package Management;
 
+
+import Personnal.Customer;
 import Registration.Registration;
-import Personnel.Customer;
-import java.util.Scanner;
+import java.io.IOException;
+
 
 /**
  *
@@ -59,14 +61,23 @@ public class BusTicketingSystem {
     /**
      * @param args the command line arguments
      */
+    
+    public static void cls() throws IOException, InterruptedException{
+         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+    }
+    
     private static int choice;
     private static Customer loggedIn = null;
+    
+    public static void main(String[] args) {
+        
+    }
     
     private static void performLogin() {
         switch (choice) {
             case 1:
-                performRegisteration();
-                performRegisterationCard();
+                Customer customer = Registration.performRegistration();
+                Customer.add(customer);
                 
         }
     }

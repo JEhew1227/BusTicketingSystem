@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaassignment;
+package payment;
+
+import Asset.Ticket;
 
 /**
  *
@@ -19,10 +21,6 @@ abstract public class Transaction implements Payment{
         this.paymentID = "PMT"+Transaction.nextTransactionID;
         this.ticket = ticket;
         Transaction.nextTransactionID++;
-    }
-    
-    public static double calTotal(Ticket ticket){
-        return ticket.getAmount() * ticket.getQuantity;
     }
 
     public Transaction(String paymentID, Ticket ticket) {

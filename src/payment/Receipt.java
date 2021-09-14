@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package receipt;
+package payment;
 
+import Personnal.Customer;
 import java.util.Calendar;
 
 /**
@@ -75,16 +76,3 @@ public class Receipt {
         System.out.println("Thank you and till next time:) ");
     }
 }
-    
-    
-    
-    
-    
-}
-    
-    
-
-    
-  
-
-
