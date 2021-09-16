@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Registration;
+import Management.BusTicketingSystem;
 import payment.Card;
 import Personnal.Customer;
 import java.util.Calendar;
@@ -30,11 +31,12 @@ public interface Registration {
         
         System.out.println("\nThese are the personal information that you have entered");
         
-        System.out.printf("\nYour username : %s" ,userName);
-        System.out.printf("\nYour password : %s" , password);
+        System.out.println("--------------------------------");
+        System.out.printf("Your username : %s" ,userName);
+        System.out.printf("\nYour password : %s\n" , password);
+        System.out.println("--------------------------------");
         
         Card card = performRegistrationCard();
-        
         return new Customer(userName, password, card);  
     }
     
@@ -44,7 +46,7 @@ public interface Registration {
         Scanner scanner = new Scanner(System.in);
         String cardNum;
         int cvv;
-        Calendar expiryDate = null;
+        Calendar expiryDate = Calendar.getInstance();
         Calendar calendar = Calendar.getInstance();
         
         
@@ -53,7 +55,7 @@ public interface Registration {
         
         System.out.print("\nEnter your Card expiry date (month)>");
         int month = scanner.nextInt();
-        
+        --month;
         System.out.print("\nEnter your Card expiry date (year)>");
         int year = scanner.nextInt();
         
@@ -64,23 +66,24 @@ public interface Registration {
         cvv = scanner.nextInt();
                 
         System.out.println("\nThese are the card information that you have entered\n");
-        int monthExpiryDate = expiryDate.get(Calendar.MONTH);
+        int monthExpiryDate = expiryDate.get(Calendar.MONTH)+1;
         int yearExpiryDate = expiryDate.get(Calendar.YEAR);
-        
+         
+        System.out.println("--------------------------------");
         System.out.printf("Your card number      : %s\n" ,cardNum);
         System.out.printf("Your card expiry date : %d/%d\n" , monthExpiryDate, yearExpiryDate);
         System.out.printf("Your card cvv         : %d\n" , cvv);
+        System.out.println("--------------------------------");
         
-        
+        System.out.println("\nYou have successfully registered an account...");
         return new Card(cardNum,expiryDate, cvv);
     }
     
     public static void editAccount(){
+        System.out.println("EDIT ACCOUNT....");
         
-    }
-
-    public static void deleteAccount(){
-        
+        performRegistration();
+        System.out.println("Account edited..");
     }
 
 }
