@@ -9,7 +9,6 @@ package Management;
 import Asset.Schedule;
 import Asset.Ticket;
 import Personnal.Customer;
-import static Personnal.Customer.parseTicketUserChoice;
 import Registration.Registration;
 import java.io.IOException;
 import java.util.Scanner;
@@ -20,13 +19,22 @@ import payment.Payment;
  *
  * @author Qzheng
  */
+interface Flags {
+    static final int NO_LOGIN = 0;
+    static final int LOGGED_IN = 1;
+    static final int MAIN_MENU = 2;
+    static final int REGISTER_MENU = 3;
+    static final int ACCOUNT_MENU = 4;
+    static final int EXIT = 5;
+}
+
 interface Menu {
 
     static void welcomeMessage(){
         System.out.println("WELCOME!!!!");
         System.out.println("THIS IS A BUS RESERVATION AND TICKETING SYSTEM...");
     }
-    
+
     static void mainMenu(){
         System.out.println(" --------------------------");
         System.out.println("|         MAIN MENU        |");
@@ -36,8 +44,10 @@ interface Menu {
         System.out.println("|     3 : Reservation      |");
         System.out.println("|     4 : Payment          |");
         System.out.println("|     5 : Exit             |");
+        // System.out.println("| 5 : Log Out                                 |"); up to you
         System.out.println(" --------------------------");
     }
+
     static void regMenu() {
         System.out.println(" ------------------------------------------");
         System.out.println("|   BUS RESERVATION AND TICKETING SYSTEM   |");
@@ -46,9 +56,8 @@ interface Menu {
         System.out.println("| 2 : Login                                |");
         System.out.println("| 3 : Exit                                 |");
         System.out.println(" ------------------------------------------\n");
-
     }
-    
+
     static void accMenu(){
         System.out.println(" --------------------------");
         System.out.println("|         ACCOUNT          |");
@@ -57,21 +66,10 @@ interface Menu {
         System.out.println("|     2 : Delete           |");
         System.out.println("|     3 : Display          |");
         System.out.println("|     4 : Exit             |");
+        // System.out.println("| 4 : Log Out                                 |"); up to you
         System.out.println(" --------------------------");
     }
-    
-    static void scheduleMenu(){
-        System.out.println(" --------------------------");
-        System.out.println("|     BUS SCHEDULE LIST    |");
-        System.out.println(" --------------------------");
-        System.out.println("|     1 : Add              |");
-        System.out.println("|     2 : Edit             |");
-        System.out.println("|     3 : Delete           |");
-        System.out.println("|     4 : View             |");
-        System.out.println("|     5 : Exit             |");
-        System.out.println(" --------------------------");
-    }
-    
+
     static void exitMessage(){
         System.out.println("YOU CHOSE TO EXIT THE SYSTEM...");
         System.out.println("HAVE A NICE DAY!!!!");
@@ -84,147 +82,146 @@ public class BusTicketingSystem {
      * @param args the command line arguments
      */
     public static void cls() throws IOException, InterruptedException{
-         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
-    
+
     private static int choice;
+    private static int flag = Flags.NO_LOGIN;
     private static Customer loggedInUser = null;
-    
-    public static Scanner scanner =new Scanner(System.in);
-    
-    public static Scanner scan = new Scanner(System.in);
-    
+
+    public static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         init();
-        //display logo//
         Menu.welcomeMessage();
-        Menu.regMenu();
-        System.out.print("\nWhat is your choice :");
-        choice = scanner.nextInt();
-        firstChoice();
+        while (flag != Flags.EXIT) {
+            showMenu();
+            System.out.print("\nWhat is your choice: ");
+            choice = scanner.nextInt();
+            parseChoice();
+        }
     }
-    
+
+    private static void parseChoice() {
+        switch (flag) {
+            case Flags.NO_LOGIN:
+                firstChoice();
+                break;
+            case Flags.LOGGED_IN:
+                mainMenuChoice();
+                break;
+            case Flags.ACCOUNT_MENU:
+                accChoice();
+                break;
+        }
+    }
+
+    private static void showMenu() {
+        switch (flag) {
+            case Flags.NO_LOGIN:
+                Menu.regMenu();
+                break;
+            case Flags.LOGGED_IN:
+                Menu.mainMenu();
+                break;
+            case Flags.ACCOUNT_MENU:
+                Menu.accMenu();
+                break;
+        }
+    }
+
     private static void init(){
-        Schedule [] scheduleList = { 
+        Schedule [] scheduleList = {
             new Schedule ("Kepong", "Ipoh", Schedule.setupTime(14,35)),
             new Schedule ("Kedah", "Kelantan", Schedule.setupTime(16,00)),
             new Schedule ("Perak", "Selangor", Schedule.setupTime(9,30)),
             new Schedule ("Melaka", "Negeri Sembilan", Schedule.setupTime(11,20)),
             new Schedule ("Teluk Intan", "Seremban", Schedule.setupTime(18,50))
-                         
         };
-        
+
         for(int a = 0; a < scheduleList.length; a++){
-            System.out.println(scheduleList[a]);
             Schedule.addSchedule(scheduleList[a]);
-            System.out.println("Schedule has been added");
         }
     }
-    
-        private static void performLogin(){
-        
+
+    private static void performLogin(){
         System.out.printf("Enter your username :");
+        scanner.nextLine();
         String userName = scanner.nextLine();
-        
+
         System.out.printf("\nEnter your password :");
-        String password = scanner.nextLine();
-        
+        String password = new String(System.console().readPassword());
+
         Customer customer = Customer.search(userName, password);
         if(customer == null){
             System.out.println("\nUser doesn't exist");
-            
+            flag = Flags.NO_LOGIN;
+            loggedInUser = null;
+            return;
         }
         loggedInUser = customer;
-        
+        flag = Flags.LOGGED_IN;
     }
-    
-    private static void performReg() {
-                Registration.performRegistration();
-                mainMenuChoice();
-    }
-    
+
     public static void mainMenuChoice(){
-        Menu.mainMenu();
-                getChoice();
-                switch(choice){
-                    case 1:
-                        Menu.accMenu();
-                        getChoice();
-                        accChoice();
-                        break;
-                    case 2:
-                        Menu.scheduleMenu();
-                        break;
-                    case 3:
-                        reserveTicket();
-                        break;
-                    case 4:
-                        //Payment.performPayment();
-                        break;
-                    case 5:
-                        Menu.exitMessage();
-                        break;
+        switch(choice){
+            case 1:
+                accChoice();
+                break;
+            case 2:
+                // Menu.scheduleMenu();
+                break;
+            case 3:
+                reserveTicket();
+                break;
+            case 4:
+                //Payment.performPayment();
+                break;
+            case 5:
+                Menu.exitMessage();
+                flag = Flags.EXIT;
+                break;
         }
     }
     private static void accChoice(){
         switch(choice){
             case 1:
                 Registration.editAccount();
-                mainMenuChoice();
                 break;
             case 2:
                 Customer.deleteAccount(loggedInUser);
-                mainMenuChoice();
                 break;
             case 3:
-                //display customer info
+                //display customer info ???
                 break;
             case 4:
                 mainMenuChoice();
         }
     }
-    
+
     private static void scheduleChoice(){
         switch(choice){
             case 1:
-                
                 break;
         }
     }
-        
-    private static void getChoice(){
-        System.out.print("\nWhat is your choice :");
-        choice = scanner.nextInt();
-    }
-    
+
     private static void firstChoice(){
         switch(choice){
             case 1:
-                performReg();
-                mainMenuChoice();
-                break; 
+                Customer newCustomer = Registration.performRegistration();
+                Customer.add(newCustomer);
+                break;
             case 2:
                 performLogin();
-                
                 break;
             case 3:
                 Menu.exitMessage();
+                flag = Flags.EXIT;;
                 break;
         }
     }
-    
-    private static void custMenu(){
-        
-    }
-    
-    private static void scheduleMenu(){
-        
-    }
-    
-    private static void cardMenu(){
-        
-    }
-    
+
     public static void reserveTicket() {
         Scanner scanner = new Scanner(System.in);
         int selection;
@@ -239,14 +236,15 @@ public class BusTicketingSystem {
             System.out.println("\t \t | [2] Booking Ticket  |");
             System.out.println("\t \t | [3] Exit            |");
             System.out.println("\t \t *=====================*");
-            System.out.println(""); // new line
+            System.out.println("");
             System.out.print(" \t \t Enter your choice : ");
             selection = scanner.nextInt();
 
-            parseTicketUserChoice(selection, destination, matrix);
-            
+            Customer.parseTicketUserChoice(selection, destination, matrix);
+
 
         } while (selection != 3);
 
+        scanner.close();
     }
 }
