@@ -229,10 +229,9 @@ public class Customer extends Person implements Reservation {
     }
 
     public static Ticket bookingSeat(char matrix[][]) {
-
-        Scanner scanner = new Scanner(System.in);
         int ticketCount = 1;
-
+        Scanner scanner = new Scanner(System.in);
+        
         //loop for column
         for (int colNum = 1; colNum <= 2; colNum++) {
             System.out.print("\t\t\t" + " Column " + (colNum));
@@ -283,8 +282,9 @@ public class Customer extends Person implements Reservation {
             System.out.println("\t\t\tYou Have Successfully booking a seat !");
             System.out.print("\t\t\tDo you want booking another seat ? (Y/N) : ");
             char option = scanner.next().charAt(0);
-
+            
             if (option == 'Y' || option == 'y') {
+                
                 ticketCount++;
                 continue;
             } else {
