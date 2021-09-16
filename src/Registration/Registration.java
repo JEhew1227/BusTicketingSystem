@@ -86,8 +86,4 @@ public interface Registration {
         System.out.println("Account edited..");
     }
 
-    public static void deleteAccount(){
-        
-    }
-
 }
