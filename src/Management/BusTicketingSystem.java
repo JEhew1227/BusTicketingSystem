@@ -6,10 +6,11 @@
 package Management;
 
 
+import static Management.Menu.*;
 import Personnal.Customer;
 import Registration.Registration;
 import java.io.IOException;
-
+import java.util.Scanner;
 
 /**
  *
@@ -17,8 +18,15 @@ import java.io.IOException;
  */
 interface Menu {
 
+    static void logo(){
+        System.out.println(" ___ _   _ ___   _____ ___ ___ _  _____ _____ ___ _  _  ___   _____   _____ _____ ___ __  __ ");
+        System.out.println("| _ ) | | / __| |_   _|_ _/ __| |/ / __|_   _|_ _| \\| |/ __| / __\\ \\ / / __|_   _| __|  \\/  |");
+        System.out.println("| _ \\ |_| \\__ \\   | |  | | (__| ' <| _|  | |  | || .` | (_ | \\__ \\\\ V /\\__ \\ | | | _|| |\\/| |");
+        System.out.println("|___/\\___/|___/   |_| |___\\___|_|\\_\\___| |_| |___|_|\\_|\\___| |___/ |_| |___/ |_| |___|_|  |_|");
+    }
+    
     static void mainMenu() {
-        System.out.println("THIS IS A BUS RESERVATION AND TICKETING SYSTEM...");
+        
         System.out.println(" ------------------------------------------");
         System.out.println("|   BUS RESERVATION AND TICKETING SYSTEM   |");
         System.out.println(" ------------------------------------------ ");
@@ -26,7 +34,7 @@ interface Menu {
         System.out.println("| [2] Edit account                         |");
         System.out.println("| [3] Delete account                       |");
         System.out.println("| [4] Exit                                 |");
-        System.out.println(" ------------------------------------------\n");
+        System.out.println(" ------------------------------------------");
 
     }
     
@@ -61,7 +69,6 @@ public class BusTicketingSystem {
     /**
      * @param args the command line arguments
      */
-    
     public static void cls() throws IOException, InterruptedException{
          new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
@@ -69,8 +76,15 @@ public class BusTicketingSystem {
     private static int choice;
     private static Customer loggedIn = null;
     
+    public static Scanner scan = new Scanner(System.in);
+    
     public static void main(String[] args) {
-        
+        logo();
+        System.out.println();
+        mainMenu();
+        System.out.println("Enter Choice: ");
+        choice = scan.nextInt();
+        performLogin();
     }
     
     private static void performLogin() {

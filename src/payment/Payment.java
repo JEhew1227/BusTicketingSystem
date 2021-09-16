@@ -34,11 +34,13 @@ public interface Payment {
         System.out.print("Enter Your OTP code: ");
         String inputOTP = scan.next();
         if(!inputOTP.equals(otp)){
+            System.out.println("Incorrect OTP code!");
             return false;
         }
         System.out.println("Enter total: ");
         double inputTotal = scan.nextDouble();
         if(inputTotal < total){
+            System.out.println("Insufficient amount entered!");
             return false;
         }
         
