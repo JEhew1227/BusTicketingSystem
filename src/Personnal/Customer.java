@@ -82,9 +82,7 @@ public class Customer extends Person implements Reservation {
                 System.out.println("\nYour account has been deleted\n");
                 customerList.remove(customer);
 
-            } else if (yesOrno == 'N' || yesOrno == 'n') {
-
-            } else {
+            }  else {
                 System.out.println("\nInvalid Choice, please enter again.\n");
             }
         } while (yesOrno != 'y' || yesOrno != 'n');
