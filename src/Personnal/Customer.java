@@ -189,7 +189,7 @@ public class Customer extends Person implements Reservation {
                 System.out.println("\t\t\t *====================================================================================*");
                 for (int i = 0; i < Schedule.scheduleList.size(); i++) {
                     Schedule schedule = Schedule.scheduleList.get(i);
-                    System.out.printf("\t\t\t |  [%d] %-20s --> %-20s |    %-5s      |    RM%d       |\n", i, schedule.getStartLocation(), schedule.getDestination(), schedule.getDepartureTime(), 10);
+                    System.out.printf("\t\t\t |  [%d] %-20s --> %-20s |    %-5s      |    RM%d       |\n", i+1, schedule.getStartLocation(), schedule.getDestination(), schedule.getDepartureTime(), 10);
                 }
                 System.out.println("\t\t\t *====================================================================================*");
                 System.out.println(""); // new line
@@ -221,7 +221,7 @@ public class Customer extends Person implements Reservation {
             return null;
         }
         System.out.println("\t\t\t *============================*");
-        System.out.printf("\t\t\t *%10s\n", Schedule.scheduleList.get(destination - 1).getDestination());
+        System.out.printf("\t\t\t *      %10s       *\n", Schedule.scheduleList.get(destination - 1).getDestination());
         System.out.println("\t\t\t *============================*");
         return bookingSeat(matrix);
     }
