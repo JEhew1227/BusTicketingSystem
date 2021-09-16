@@ -115,7 +115,7 @@ public class BusTicketingSystem {
         }
     }
     
-gir    private static void performLogin(){
+     private static void performLogin(){
         
         System.out.print("Enter your username :\n");
         String userName = scanner.nextLine();
