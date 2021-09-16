@@ -31,6 +31,7 @@ public class Customer extends Person implements Reservation {
     private String password;
     private int reserveSeatNo;
 
+
     private static ArrayList<Customer> customerList = new ArrayList<>();
     private static int nextID = 1000;
     private Ticket ticket;
@@ -215,7 +216,7 @@ public class Customer extends Person implements Reservation {
 
     public static Ticket destination(int destination, char matrix[][]) {
 
-        if (destination < 0 || destination > Schedule.scheduleList.size() - 1) {
+        if (destination < 0 || destination > Schedule.scheduleList.size() ) {
             return null;
         }
         System.out.println("\t\t\t *============================*");
@@ -227,6 +228,7 @@ public class Customer extends Person implements Reservation {
     public static Ticket bookingSeat(char matrix[][]) {
 
         Scanner scanner = new Scanner(System.in);
+        int ticketCount = 1;
 
         //loop for column
         for (int colNum = 1; colNum <= 2; colNum++) {
@@ -254,9 +256,9 @@ public class Customer extends Person implements Reservation {
             System.out.println("\t\t\tColumn : " + y);
 
             if ((x > 0 && y > 0)) {
-                System.out.println("\n \t\t\t Bus Seat Reservation ");
+                System.out.println("\n \t\t\t\t Bus Seat Reservation ");
                 System.out.println();
-                System.out.println("\t\t\t---------------------------------------");
+                System.out.println("\t\t\t-------------------------------------------------");
 
                 for (int colNum = 1; colNum <= 2; colNum++) {
                     System.out.print("\t\t\t\t" + "Column " + (colNum));
@@ -280,12 +282,14 @@ public class Customer extends Person implements Reservation {
             char option = scanner.next().charAt(0);
 
             if (option == 'Y' || option == 'y') {
+                ticketCount++;
                 continue;
             } else {
                 System.out.println(" \t\t\tEnjoy Your Trip !");
                 break;
             }
-
+            
+            
         }
         // create ticket
         return new Ticket(10, 1, false);
