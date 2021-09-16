@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Personnal;
 
 import Management.BusTicketingSystem;
@@ -70,8 +75,26 @@ public class Customer extends Person implements Reservation {
         customerList.set(oldCustomerIndex, newCustomer);
     }
 
-    public static void delete(Customer customer) {
-        customerList.remove(customer);
+    public static void deleteAccount(Customer customer){
+        
+        Scanner scanner = new Scanner(System.in);
+        char yesOrno;
+        
+        do{
+            System.out.printf("Are you sure you want to delete your account?(y/n)");
+            yesOrno = scanner.next().charAt(0);
+        
+        if(yesOrno == 'Y' || yesOrno == 'y'){
+            System.out.println("\nYour account has been deleted\n");
+            customerList.remove(customer);
+            BusTicketingSystem.mainMenuChoice();
+        }
+        else if (yesOrno == 'N' || yesOrno == 'n'){
+            BusTicketingSystem.mainMenuChoice();
+        }
+        else
+            System.out.println("\nInvalid Choice, please enter again.\n");
+        }while(yesOrno != 'y' || yesOrno != 'n');
     }
 
     public String getCustName() {
@@ -298,4 +321,5 @@ public class Customer extends Person implements Reservation {
     }
     
 }
+
 
