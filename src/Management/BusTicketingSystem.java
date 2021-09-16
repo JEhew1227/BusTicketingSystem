@@ -26,10 +26,8 @@ import payment.Payment;
 interface Flags {
     static final int NO_LOGIN = 0;
     static final int LOGGED_IN = 1;
-    static final int MAIN_MENU = 2;
-    static final int REGISTER_MENU = 3;
-    static final int ACCOUNT_MENU = 4;
-    static final int EXIT = 5;
+    static final int ACCOUNT_MENU = 2;
+    static final int EXIT = 3;
 }
 
 interface Menu {
@@ -44,11 +42,9 @@ interface Menu {
         System.out.println("|         MAIN MENU        |");
         System.out.println(" --------------------------");
         System.out.println("|     1 : Account          |");
-        System.out.println("|     2 : Schedule         |");
-        System.out.println("|     3 : Reservation      |");
-        System.out.println("|     4 : Payment          |");
-        System.out.println("|     5 : Exit             |");
-        // System.out.println("| 5 : Log Out                                 |"); up to you
+        System.out.println("|     2 : Reservation      |");
+        System.out.println("|     3 : Payment          |");
+        System.out.println("|     4 : Log Out          |");
         System.out.println(" --------------------------");
     }
 
@@ -68,9 +64,7 @@ interface Menu {
         System.out.println(" --------------------------");
         System.out.println("|     1 : Edit             |");
         System.out.println("|     2 : Delete           |");
-        System.out.println("|     3 : Display          |");
-        System.out.println("|     4 : Exit             |");
-        // System.out.println("| 4 : Log Out                                 |"); up to you
+        System.out.println("|     3 : Back             |");
         System.out.println(" --------------------------");
     }
 
@@ -85,9 +79,6 @@ public class BusTicketingSystem {
     /**
      * @param args the command line arguments
      */
-    public static void cls() throws IOException, InterruptedException{
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-    }
 
     private static int choice;
     private static int flag = Flags.NO_LOGIN;
@@ -109,17 +100,61 @@ public class BusTicketingSystem {
     private static void parseChoice() {
         switch (flag) {
             case Flags.NO_LOGIN:
-                firstChoice();
+                parseRegistration();
                 break;
             case Flags.LOGGED_IN:
-                mainMenuChoice();
+                parseMainMenu();
                 break;
             case Flags.ACCOUNT_MENU:
-                accChoice();
+                parseAccountMenu();
                 break;
         }
     }
 
+    private static void parseRegistration(){
+        switch(choice){
+            case 1: 
+                Registration.performRegistration();
+                break;
+            case 2:
+                performLogin();
+                break;
+            case 3:
+                Menu.exitMessage();
+                flag = Flags.EXIT;
+                break;
+        }
+    }
+    
+    private static void parseMainMenu(){
+        switch(choice){
+            case 1:
+                flag = Flags.ACCOUNT_MENU;
+                break;
+            case 2:
+                loggedInUser.reserveTicket();
+                break;
+            case 3:
+                Payment.performPayment(loggedInUser, loggedInUser.getTicket());
+                break;
+            case 4:
+                logOut();
+                break;
+        }
+    }
+    
+    private static void parseAccountMenu(){
+        switch(choice){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                flag = Flags.LOGGED_IN;
+                break;
+        }
+    }
+    
     private static void showMenu() {
         switch (flag) {
             case Flags.NO_LOGIN:
@@ -133,7 +168,12 @@ public class BusTicketingSystem {
                 break;
         }
     }
-
+    
+    private static void logOut(){
+        loggedInUser = null;
+        flag = Flags.NO_LOGIN;
+    }
+    
     private static void init(){
         Schedule [] scheduleList = {
             new Schedule ("Kepong", "Ipoh", Schedule.setupTime(14,35)),
@@ -152,9 +192,12 @@ public class BusTicketingSystem {
         System.out.printf("Enter your username :");
         scanner.nextLine();
         String userName = scanner.nextLine();
+        System.out.println(userName);
 
         System.out.printf("\nEnter your password :");
-        String password = new String(System.console().readPassword());
+//        String password = new String(System.console().readPassword());
+        String password = scanner.nextLine();
+        System.out.println(password);
 
         Customer customer = Customer.search(userName, password);
         if(customer == null){
@@ -165,65 +208,6 @@ public class BusTicketingSystem {
         }
         loggedInUser = customer;
         flag = Flags.LOGGED_IN;
-    }
-
-    public static void mainMenuChoice(){
-        switch(choice){
-            case 1:
-                accChoice();
-                break;
-            case 2:
-                // Menu.scheduleMenu();
-                break;
-            case 3:
-                reserveTicket();
-                break;
-            case 4:
-                //Payment.performPayment();
-                break;
-            case 5:
-                Menu.exitMessage();
-                flag = Flags.EXIT;
-                break;
-        }
-    }
-    private static void accChoice(){
-        switch(choice){
-            case 1:
-                Registration.editAccount();
-                break;
-            case 2:
-                Customer.deleteAccount(loggedInUser);
-                break;
-            case 3:
-                //display customer info
-                break;
-            case 4:
-                mainMenuChoice();
-        }
-    }
-
-    private static void scheduleChoice(){
-        switch(choice){
-            case 1:
-                break;
-        }
-    }
-
-    private static void firstChoice(){
-        switch(choice){
-            case 1:
-                Customer newCustomer = Registration.performRegistration();
-                Customer.add(newCustomer);
-                break;
-            case 2:
-                performLogin();
-                break;
-            case 3:
-                Menu.exitMessage();
-                flag = Flags.EXIT;;
-                break;
-        }
     }
 
     public static void reserveTicket() {
@@ -250,5 +234,9 @@ public class BusTicketingSystem {
         } while (selection != 3);
 
         scanner.close();
+    }
+    
+    public static void cls() throws IOException, InterruptedException{
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
 }

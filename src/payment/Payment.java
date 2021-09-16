@@ -18,7 +18,12 @@ public interface Payment {
     //work in progress
     // its ok, good luck
     public static boolean performPayment(Customer customer, Ticket ticket){
+        if(ticket == null){
+            System.out.println("You have not reserve any tickets yet");
+            return false;
+        }
         //display get ticket information
+        
         Scanner scan = new Scanner(System.in);
         double total = ticket.calTotal();
         System.out.println(ticket.toString());

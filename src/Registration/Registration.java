@@ -25,22 +25,26 @@ public interface Registration {
         String userName = scanner.nextLine();
 
         System.out.print("\nEnter password >");
-        String password = new String(System.console().readPassword());
-
+//        String password = new String(System.console().readPassword());
+        String password = scanner.nextLine();
         Card card = performRegistrationCard();
-        return new Customer(userName, password, card);
+        while (card == null){
+            System.out.println("Invalid card information");
+            card = performRegistrationCard();
+        }
+        System.out.println("You have successfully registered");
+        Customer customer = new Customer(userName, password, card);
+        Customer.add(customer);
+        return customer;
     }
 
 
     public static Card performRegistrationCard(){
-
         Scanner scanner = new Scanner(System.in);
         String cardNum;
         int cvv;
         Calendar expiryDate = Calendar.getInstance();
-        Calendar calendar = Calendar.getInstance();
-
-
+        
         System.out.print("\nEnter your Card number >");
         cardNum = scanner.nextLine();
 
@@ -55,19 +59,12 @@ public interface Registration {
 
         System.out.print("\nEnter you Card cvv number >");
         cvv = scanner.nextInt();
-
-        System.out.println("\nThese are the card information that you have entered\n");
+        
         int monthExpiryDate = expiryDate.get(Calendar.MONTH)+1;
         int yearExpiryDate = expiryDate.get(Calendar.YEAR);
-
-        System.out.println("--------------------------------");
-        System.out.printf("Your card number      : %s\n" ,cardNum);
-        System.out.printf("Your card expiry date : %d/%d\n" , monthExpiryDate, yearExpiryDate);
-        System.out.printf("Your card cvv         : %d\n" , cvv);
-        System.out.println("--------------------------------");
-
-        System.out.println("\nYou have successfully registered an account...");
-        return new Card(cardNum,expiryDate, cvv);
+        
+        Card card = new Card(cardNum, expiryDate, cvv);
+        return Card.validateCard(card) ? card : null;
     }
 
     public static void editAccount(){

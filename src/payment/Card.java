@@ -27,7 +27,7 @@ public class Card {
         this.cardNum = cardNum;
         this.expiryDate = expiryDate;
         this.cvv = cvv;
-        //this.balance = payment.generateRandomBalance();
+        this.balance = Payment.generateRandomBalance();
     }
 
     public String getCardNum() {

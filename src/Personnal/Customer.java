@@ -61,6 +61,7 @@ public class Customer extends Person implements Reservation {
             if (customerList.get(i).getName().equals(custName) && customerList.get(i).getPassword().equals(password)) {
                 return customerList.get(i);
             }
+           
         }
         return null;
     }
@@ -82,10 +83,10 @@ public class Customer extends Person implements Reservation {
         if(yesOrno == 'Y' || yesOrno == 'y'){
             System.out.println("\nYour account has been deleted\n");
             customerList.remove(customer);
-            BusTicketingSystem.mainMenuChoice();
+            
         }
         else if (yesOrno == 'N' || yesOrno == 'n'){
-            BusTicketingSystem.mainMenuChoice();
+            
         }
         else
             System.out.println("\nInvalid Choice, please enter again.\n");
@@ -201,13 +202,12 @@ public class Customer extends Person implements Reservation {
                 System.out.println(""); // new line
                 System.out.print(" \t \t Enter Destination : ");
                 destination = scanner.nextInt();
-
+                
                 ticket = destination(destination, matrix);
 
             case 3:
                 System.out.println("Thank You and BYE !");
                 System.out.println(" Have A Nice Day ! ");
-                BusTicketingSystem.mainMenuChoice();
                 break;
 
         }
@@ -220,7 +220,7 @@ public class Customer extends Person implements Reservation {
             return null;
         }
         System.out.println("\t \t *============================*");
-        System.out.printf("\t \t *%10s\n", Schedule.scheduleList.get(destination).getDestination());
+        System.out.printf("\t \t *%10s\n", Schedule.scheduleList.get(destination-1).getDestination());
         System.out.println("\t \t *============================*");
         return bookingSeat(matrix);
     }
@@ -288,8 +288,6 @@ public class Customer extends Person implements Reservation {
             }
 
         }
-
-        scanner.close();
         // create ticket
         return new Ticket(10, 1, false);
     }

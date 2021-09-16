@@ -67,5 +67,12 @@ public class Ticket {
     public double calTotal() {
         return this.amount * this.quantity;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" + "amount=" + amount + ", quantity=" + quantity + ", paidStatus=" + paidStatus + '}';
+    }
+    
+    
 }
 
