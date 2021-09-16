@@ -16,9 +16,7 @@ import payment.Receipt;
  */
 public interface Payment {
 
-    //work in progress
-    // its ok, good luck
-    public static boolean performPayment(Customer customer, Ticket ticket) {
+     public static boolean performPayment(Customer customer, Ticket ticket) {
         if (ticket == null) {
             System.out.println("\t\t\tYou have not reserve any tickets yet");
             return false;
