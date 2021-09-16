@@ -14,12 +14,12 @@ import java.util.regex.Pattern;
  * @author JEhew
  */
 public class Card {
-    
+
     private String cardNum;
     private Calendar expiryDate;
     private int cvv;
     private double balance;
-    
+
     private boolean credit;
     public static boolean validateCard;
 
@@ -27,7 +27,7 @@ public class Card {
         this.cardNum = cardNum;
         this.expiryDate = expiryDate;
         this.cvv = cvv;
-        //this.balance = payment.generateRandomBalance();
+        this.balance = Payment.generateRandomBalance();
     }
 
     public String getCardNum() {
@@ -45,14 +45,12 @@ public class Card {
     public void setBalance(double balance) {
         this.balance = balance;
     }
-    
-    
 
-    public String toString(){
-        return String.format("%-20s %-15s %-5d ", cardNum,expiryDate,cvv);
-        
-    }   
-    
+    public String toString() {
+        return String.format("%-20s %-15s %-5d ", cardNum, expiryDate, cvv);
+
+    }
+
     public static boolean validateCard(Card card) {
         Pattern p = Pattern.compile("^\\d{4} \\d{4} \\d{4} \\d{4}$");
         Matcher m = p.matcher(card.cardNum);
@@ -65,5 +63,5 @@ public class Card {
 
         return validCardNum && validDate && validCvv;
     }
-    
+
 }
