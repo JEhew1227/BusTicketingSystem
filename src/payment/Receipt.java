@@ -5,42 +5,27 @@
  */
 package payment;
 
+import Asset.Ticket;
 import Personnal.Customer;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
  * @author User
  */
-public class Receipt {
+public class Receipt extends Transaction{
 
-    private Customer customer;
-    private Calendar datePaid;
+   private Date datePaid;
     private boolean paidStatus;
-    private int quantity;
     private double amountPaid;
 
-    public Receipt(Customer customer) {
-        this.customer = customer;
-        datePaid = Calendar.getInstance();
+    public Receipt(Ticket ticket) {
+        super(ticket);
     }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Calendar getDatePaid() {
-        return datePaid;
-    }
-
-    public void setDatePaid(Calendar datePaid) {
-        this.datePaid = datePaid;
-    }
-
+    
     public boolean isPaidStatus() {
         return paidStatus;
     }
@@ -48,32 +33,36 @@ public class Receipt {
     public void setPaidStatus(boolean paidStatus) {
         this.paidStatus = paidStatus;
     }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public double getAmountPaid() {
-        return amountPaid;
-    }
-
+   
     public void setAmountPaid(double amountPaid) {
         this.amountPaid = amountPaid;
     }
-
-    public static void printReceipt(Customer customer, Calendar datePaid, boolean paidStatus, int quantity, double amountPaid) {
-        System.out.println("\t\t\t===========================\n");
-        System.out.println("\t\t\t|Customer Name:" + customer + "|\n");
-        System.out.println("\t\t\t|Date Paid:   " + datePaid + " |\n");
-        System.out.println("\t\t\t|Paid Status: " + paidStatus + "|\n");
-        System.out.println("\t\t\t|No.of tickets:    " + quantity + "| \n");
-        System.out.println("\t\t\t===========================\n");
-        System.out.println("\t\t\t|Amount paid(RM) " + amountPaid + "| \n");
-        System.out.println("\t\t\t===========================\n\n");
-        System.out.println("\t\t\tThank you and till next time:) ");
+   
+    public double getAmountPaid() {
+        return amountPaid;
     }
+    
+    public void setDate(Date datePaid){
+        this.datePaid = datePaid;
+    }
+    
+    public Date getDate(){
+        return this.datePaid;
+    }
+    public static String printReceipt(Ticket ticket, Customer customer) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDateTime now = LocalDateTime.now();
+        return   "\t\t\t ===========================\n"
+                +"\t\t\t          Receipt           \n"
+                +"\t\t\t ===========================\n"
+                +"\t\t\t Customer Name  3:"+customer.getName()+"\n"
+                +"\t\t\t Date Paid      :"+dtf.format(now)+      "\n"
+                +"\t\t\t Paid Status    :"+ticket.isPaidStatus()+"\n"
+                +"\t\t\t No.of tickets  :"+ticket.getQuantity() +"\n"
+                +"\t\t\t ===========================\n"
+                +"\t\t\t Amount paid(RM): " + ticket.calTotal()+"\n"
+                +"\t\t\t ===========================\n\n"
+                +"\t\t\tThank you and till next time:)";
+    }
+
 }

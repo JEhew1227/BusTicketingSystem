@@ -28,4 +28,5 @@ abstract public class Transaction implements Payment {
         this.ticket = ticket;
     }
 
+    
 }

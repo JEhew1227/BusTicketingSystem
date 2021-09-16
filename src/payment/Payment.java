@@ -9,7 +9,7 @@ import Asset.Ticket;
 import Personnal.Customer;
 import java.io.IOException;
 import java.util.Scanner;
-
+import payment.Receipt;
 /**
  *
  * @author KUNG WEI XIN
@@ -60,7 +60,7 @@ public interface Payment {
             System.out.println("\t\t\tPayment Successful!");
             System.out.printf("\t\t\tAfter Payment: %.2f\n", balance);
             ticket.setPaidStatus(true);
-            
+            System.out.println(Receipt.printReceipt(ticket, customer));
         }
         System.out.println("\t\t\tAll ticket has been paid");
         return true;
