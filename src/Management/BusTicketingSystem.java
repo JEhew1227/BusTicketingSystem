@@ -145,8 +145,10 @@ public class BusTicketingSystem {
     private static void parseAccountMenu() {
         switch (choice) {
             case 1:
+                Registration.editAccount();
                 break;
             case 2:
+                Customer.deleteAccount(loggedInUser);
                 break;
             case 3:
                 flag = Flags.LOGGED_IN;

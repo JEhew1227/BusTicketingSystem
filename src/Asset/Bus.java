@@ -38,6 +38,23 @@ public class Bus {
         this.customerList = new ArrayList<>();
     }
 
+    public int getBusNo() {
+        return busNo;
+    }
+
+    public void setBusNo(int busNo) {
+        this.busNo = busNo;
+    }
+
+    public static int getNextBusID() {
+        return nextBusID;
+    }
+
+    public static void setNextBusID(int nextBusID) {
+        Bus.nextBusID = nextBusID;
+    }
+
+    
     public String toString() {
         return String.format("%-5d %-15s %-5d ", busNo, driver);
 

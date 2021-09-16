@@ -15,6 +15,8 @@ import Reservation.Reservation;
 
 import Asset.Bus;
 import Personnal.Person;
+import Personnal.Driver;
+import Asset.Bus;
 import Reservation.Reservation;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +32,7 @@ public class Customer extends Person implements Reservation {
     private String custID;
     private String password;
     private int reserveSeatNo;
+
 
     private static ArrayList<Customer> customerList = new ArrayList<>();
     private static int nextID = 1000;
@@ -74,20 +77,19 @@ public class Customer extends Person implements Reservation {
         Scanner scanner = new Scanner(System.in);
         char yesOrno;
 
-        do {
+
             System.out.printf("\t\t\tAre you sure you want to delete your account?(y/n)");
             yesOrno = scanner.next().charAt(0);
 
             if (yesOrno == 'Y' || yesOrno == 'y') {
-                System.out.println("\nYour account has been deleted\n");
+                System.out.println("\n\t\t\tYour account has been deleted\n");
                 customerList.remove(customer);
 
-            } else if (yesOrno == 'N' || yesOrno == 'n') {
-
-            } else {
-                System.out.println("\nInvalid Choice, please enter again.\n");
+            }  
+            else {
+                System.out.println("\n\t\t\tInvalid Choice, please enter again.\n");
+                
             }
-        } while (yesOrno != 'y' || yesOrno != 'n');
     }
 
     public String getCustName() {
@@ -182,16 +184,16 @@ public class Customer extends Person implements Reservation {
         Ticket ticket = null;
         switch (selection) {
             case 1:
-                System.out.println("\t\t\t *====================================================================================*");
-                System.out.println("\t\t\t |                        Destination  List                                           |");
-                System.out.println("\t\t\t *====================================================================================*");
-                System.out.println("\t\t\t |     Destination                                    |     Time      |     Price     |");
-                System.out.println("\t\t\t *====================================================================================*");
+                System.out.println("\t\t\t *====================================================================================================================*");
+                System.out.println("\t\t\t |                        Destination  List                                                                           |");
+                System.out.println("\t\t\t *====================================================================================================================*");
+                System.out.println("\t\t\t |     Destination                                    |     Time      |     Price     |      Driver     |     Bus     |");
+                System.out.println("\t\t\t *====================================================================================================================*");
                 for (int i = 0; i < Schedule.scheduleList.size(); i++) {
                     Schedule schedule = Schedule.scheduleList.get(i);
-                    System.out.printf("\t\t\t |  [%d] %-20s --> %-20s |    %-5s      |    RM%d       |\n", i, schedule.getStartLocation(), schedule.getDestination(), schedule.getDepartureTime(), 10);
+                    System.out.printf("\t\t\t |  [%d] %-20s --> %-20s |    %-5s      |    RM%d       |      BD%-5s    |  %-10d |\n", i+1, schedule.getStartLocation(), schedule.getDestination(), schedule.getDepartureTime(), 10, Driver.getNextID()+i, Bus.getNextBusID()+i);
                 }
-                System.out.println("\t\t\t *====================================================================================*");
+                System.out.println("\t\t\t *=====================================================================================================================*");
                 System.out.println(""); // new line
 
                 break;
@@ -217,11 +219,11 @@ public class Customer extends Person implements Reservation {
 
     public static Ticket destination(int destination, char matrix[][]) {
 
-        if (destination < 0 || destination > Schedule.scheduleList.size() - 1) {
+        if (destination < 0 || destination > Schedule.scheduleList.size() ) {
             return null;
         }
         System.out.println("\t\t\t *============================*");
-        System.out.printf("\t\t\t *%10s\n", Schedule.scheduleList.get(destination - 1).getDestination());
+        System.out.printf("\t\t\t *      %15s       *\n", Schedule.scheduleList.get(destination - 1).getDestination());
         System.out.println("\t\t\t *============================*");
         return bookingSeat(matrix);
     }
@@ -229,6 +231,7 @@ public class Customer extends Person implements Reservation {
     public static Ticket bookingSeat(char matrix[][]) {
         int ticketCount = 1;
         Scanner scanner = new Scanner(System.in);
+        int ticketCount = 1;
 
         //loop for column
         for (int colNum = 1; colNum <= 2; colNum++) {
@@ -256,9 +259,9 @@ public class Customer extends Person implements Reservation {
             System.out.println("\t\t\tColumn : " + y);
 
             if ((x > 0 && y > 0)) {
-                System.out.println("\n \t\t\t Bus Seat Reservation ");
+                System.out.println("\n \t\t\t\t Bus Seat Reservation ");
                 System.out.println();
-                System.out.println("\n\t\t\t---------------------------------------");
+                System.out.println("\t\t\t-------------------------------------------------");
 
                 for (int colNum = 1; colNum <= 2; colNum++) {
                     System.out.print("\t\t\t\t" + "Column " + (colNum));
@@ -289,7 +292,8 @@ public class Customer extends Person implements Reservation {
                 System.out.println(" \t\t\tEnjoy Your Trip !");
                 break;
             }
-
+            
+            
         }
         // create ticket
         return new Ticket(10, ticketCount, false);
