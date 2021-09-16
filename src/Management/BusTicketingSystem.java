@@ -32,35 +32,35 @@ interface Menu {
         System.out.println("\t\t\tTHIS IS A BUS RESERVATION AND TICKETING SYSTEM...");
     }
 
-    static void mainMenu(){
-        System.out.println(" --------------------------");
-        System.out.println("|         MAIN MENU        |");
-        System.out.println(" --------------------------");
-        System.out.println("|     1 : Account          |");
-        System.out.println("|     2 : Reservation      |");
-        System.out.println("|     3 : Payment          |");
-        System.out.println("|     4 : Log Out          |");
-        System.out.println(" --------------------------");
+    static void mainMenu() {
+        System.out.println("\t\t\t --------------------------");
+        System.out.println("\t\t\t|         MAIN MENU        |");
+        System.out.println("\t\t\t --------------------------");
+        System.out.println("\t\t\t|     1 : Account          |");
+        System.out.println("\t\t\t|     2 : Reservation      |");
+        System.out.println("\t\t\t|     3 : Payment          |");
+        System.out.println("\t\t\t|     4 : Log Out          |");
+        System.out.println("\t\t\t --------------------------");
     }
 
     static void regMenu() {
-        System.out.println(" ------------------------------------------");
-        System.out.println("|   BUS RESERVATION AND TICKETING SYSTEM   |");
-        System.out.println(" ------------------------------------------ ");
-        System.out.println("| 1 : Register an account                  |");
-        System.out.println("| 2 : Login                                |");
-        System.out.println("| 3 : Exit                                 |");
-        System.out.println(" ------------------------------------------\n");
+        System.out.println("\t\t\t ------------------------------------------");
+        System.out.println("\t\t\t|   BUS RESERVATION AND TICKETING SYSTEM   |");
+        System.out.println("\t\t\t ------------------------------------------ ");
+        System.out.println("\t\t\t| 1 : Register an account                  |");
+        System.out.println("\t\t\t| 2 : Login                                |");
+        System.out.println("\t\t\t| 3 : Exit                                 |");
+        System.out.println("\t\t\t ------------------------------------------\n");
     }
 
-    static void accMenu(){
-        System.out.println(" --------------------------");
-        System.out.println("|         ACCOUNT          |");
-        System.out.println(" --------------------------");
-        System.out.println("|     1 : Edit             |");
-        System.out.println("|     2 : Delete           |");
-        System.out.println("|     3 : Back             |");
-        System.out.println(" --------------------------");
+    static void accMenu() {
+        System.out.println("\t\t\t --------------------------");
+        System.out.println("\t\t\t|         ACCOUNT          |");
+        System.out.println("\t\t\t --------------------------");
+        System.out.println("\t\t\t|     1 : Edit             |");
+        System.out.println("\t\t\t|     2 : Delete           |");
+        System.out.println("\t\t\t|     3 : Back             |");
+        System.out.println("\t\t\t --------------------------");
     }
 
     static void exitMessage() {
@@ -74,7 +74,6 @@ public class BusTicketingSystem {
     /**
      * @param args the command line arguments
      */
-
     private static int choice;
     private static int flag = Flags.NO_LOGIN;
     private static Customer loggedInUser = null;
@@ -111,9 +110,9 @@ public class BusTicketingSystem {
         }
     }
 
-    private static void parseRegistration(){
-        switch(choice){
-            case 1: 
+    private static void parseRegistration() {
+        switch (choice) {
+            case 1:
                 Registration.performRegistration();
                 break;
             case 2:
@@ -125,9 +124,9 @@ public class BusTicketingSystem {
                 break;
         }
     }
-    
-    private static void parseMainMenu(){
-        switch(choice){
+
+    private static void parseMainMenu() {
+        switch (choice) {
             case 1:
                 flag = Flags.ACCOUNT_MENU;
                 break;
@@ -142,9 +141,9 @@ public class BusTicketingSystem {
                 break;
         }
     }
-    
-    private static void parseAccountMenu(){
-        switch(choice){
+
+    private static void parseAccountMenu() {
+        switch (choice) {
             case 1:
                 break;
             case 2:
@@ -154,7 +153,7 @@ public class BusTicketingSystem {
                 break;
         }
     }
-    
+
     private static void showMenu() {
         switch (flag) {
             case Flags.NO_LOGIN:
@@ -168,19 +167,19 @@ public class BusTicketingSystem {
                 break;
         }
     }
-    
-    private static void logOut(){
+
+    private static void logOut() {
         loggedInUser = null;
         flag = Flags.NO_LOGIN;
     }
-    
-    private static void init(){
-        Schedule [] scheduleList = {
-            new Schedule ("Kepong", "Ipoh", Schedule.setupTime(14,35)),
-            new Schedule ("Kedah", "Kelantan", Schedule.setupTime(16,00)),
-            new Schedule ("Perak", "Selangor", Schedule.setupTime(9,30)),
-            new Schedule ("Melaka", "Negeri Sembilan", Schedule.setupTime(11,20)),
-            new Schedule ("Teluk Intan", "Seremban", Schedule.setupTime(18,50))
+
+    private static void init() {
+        Schedule[] scheduleList = {
+            new Schedule("Kepong", "Ipoh", Schedule.setupTime(14, 35)),
+            new Schedule("Kedah", "Kelantan", Schedule.setupTime(16, 00)),
+            new Schedule("Perak", "Selangor", Schedule.setupTime(9, 30)),
+            new Schedule("Melaka", "Negeri Sembilan", Schedule.setupTime(11, 20)),
+            new Schedule("Teluk Intan", "Seremban", Schedule.setupTime(18, 50))
         };
 
         for (int a = 0; a < scheduleList.length; a++) {
@@ -192,12 +191,11 @@ public class BusTicketingSystem {
         System.out.printf("\t\t\tEnter your username :");
         scanner.nextLine();
         String userName = scanner.nextLine();
-        System.out.println(userName);
+        //System.out.println(userName);
 
-        System.out.printf("\nEnter your password :");
-//        String password = new String(System.console().readPassword());
+        System.out.printf("\n\t\t\tEnter your password :");
         String password = scanner.nextLine();
-        System.out.println(password);
+        //System.out.println(password);
 
         Customer customer = Customer.search(userName, password);
         if (customer == null) {
@@ -234,8 +232,8 @@ public class BusTicketingSystem {
 
         scanner.close();
     }
-    
-    public static void cls() throws IOException, InterruptedException{
+
+    public static void cls() throws IOException, InterruptedException {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
 }

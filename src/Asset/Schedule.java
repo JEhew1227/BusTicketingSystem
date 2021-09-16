@@ -57,23 +57,4 @@ public class Schedule {
     public static void addSchedule(Schedule schedule) {
         scheduleList.add(schedule);
     }
-
-//    public static void deleteSchedule(Schedule schedule){
-//        scheduleList.remove(schedule);
-//    }
-//
-//    public static void editSchedule(Schedule oldSchedule, Schedule newSchedule){
-//        int oldScheduleIndex = scheduleList.indexOf(oldSchedule);
-//        scheduleList.set(oldScheduleIndex ,newSchedule);
-//    }
-//
-//    public static void viewSchedule(){
-//        System.out.println(scheduleList);
-//    }
-//   @Override
-//    public String toString() {
-//        return "Start location :" + startLocation +
-//               "Destination    :" + destination +
-//               "Date time      :" + departTime; // this one will have printing problems
-//    }
 }

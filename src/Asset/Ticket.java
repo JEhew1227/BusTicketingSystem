@@ -69,6 +69,5 @@ public class Ticket {
     public String toString() {
         return "Ticket{" + "amount=" + amount + ", quantity=" + quantity + ", paidStatus=" + paidStatus + '}';
     }
-    
-    
+
 }

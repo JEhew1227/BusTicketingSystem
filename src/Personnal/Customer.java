@@ -59,7 +59,7 @@ public class Customer extends Person implements Reservation {
             if (customerList.get(i).getName().equals(custName) && customerList.get(i).getPassword().equals(password)) {
                 return customerList.get(i);
             }
-           
+
         }
         return null;
     }
@@ -78,17 +78,16 @@ public class Customer extends Person implements Reservation {
             System.out.printf("\t\t\tAre you sure you want to delete your account?(y/n)");
             yesOrno = scanner.next().charAt(0);
 
-        if(yesOrno == 'Y' || yesOrno == 'y'){
-            System.out.println("\nYour account has been deleted\n");
-            customerList.remove(customer);
-            
-        }
-        else if (yesOrno == 'N' || yesOrno == 'n'){
-            
-        }
-        else
-            System.out.println("\nInvalid Choice, please enter again.\n");
-        }while(yesOrno != 'y' || yesOrno != 'n');
+            if (yesOrno == 'Y' || yesOrno == 'y') {
+                System.out.println("\nYour account has been deleted\n");
+                customerList.remove(customer);
+
+            } else if (yesOrno == 'N' || yesOrno == 'n') {
+
+            } else {
+                System.out.println("\nInvalid Choice, please enter again.\n");
+            }
+        } while (yesOrno != 'y' || yesOrno != 'n');
     }
 
     public String getCustName() {
@@ -183,16 +182,16 @@ public class Customer extends Person implements Reservation {
         Ticket ticket = null;
         switch (selection) {
             case 1:
-                System.out.println("\t\t\t *========================================================*");
-                System.out.println("\t\t\t |                   Destination  List                    |");
-                System.out.println("\t\t\t *========================================================*");
-                System.out.println("\t\t\t |     Destination         |     Time      |     Price    |");
-                System.out.println("\t\t\t *========================================================*");
+                System.out.println("\t\t\t *====================================================================================*");
+                System.out.println("\t\t\t |                        Destination  List                                           |");
+                System.out.println("\t\t\t *====================================================================================*");
+                System.out.println("\t\t\t |     Destination                                    |     Time      |     Price     |");
+                System.out.println("\t\t\t *====================================================================================*");
                 for (int i = 0; i < Schedule.scheduleList.size(); i++) {
                     Schedule schedule = Schedule.scheduleList.get(i);
-                    System.out.printf("\t\t\t  |  [%d] %-20s |    %s    |    RM%d     |\n", i, schedule.getDestination(), schedule.getDepartureTime(), 10);
+                    System.out.printf("\t\t\t |  [%d] %-20s --> %-20s |    %-5s      |    RM%d       |\n", i, schedule.getStartLocation(), schedule.getDestination(), schedule.getDepartureTime(), 10);
                 }
-                System.out.println("\t\t\t *========================================================*");
+                System.out.println("\t\t\t *====================================================================================*");
                 System.out.println(""); // new line
 
                 break;
@@ -204,12 +203,12 @@ public class Customer extends Person implements Reservation {
                 System.out.println(""); // new line
                 System.out.print(" \t\t\t Enter Destination : ");
                 destination = scanner.nextInt();
-                
+
                 ticket = destination(destination, matrix);
 
             case 3:
-                System.out.println("Thank You and BYE !");
-                System.out.println(" Have A Nice Day ! ");
+                System.out.println("\t\t\tThank You and BYE !");
+                System.out.println("\t\t\tHave A Nice Day ! ");
                 break;
 
         }
@@ -221,9 +220,9 @@ public class Customer extends Person implements Reservation {
         if (destination < 0 || destination > Schedule.scheduleList.size() - 1) {
             return null;
         }
-        System.out.println("\t \t *============================*");
-        System.out.printf("\t \t *%10s\n", Schedule.scheduleList.get(destination-1).getDestination());
-        System.out.println("\t \t *============================*");
+        System.out.println("\t\t\t *============================*");
+        System.out.printf("\t\t\t *%10s\n", Schedule.scheduleList.get(destination - 1).getDestination());
+        System.out.println("\t\t\t *============================*");
         return bookingSeat(matrix);
     }
 
@@ -233,43 +232,43 @@ public class Customer extends Person implements Reservation {
 
         //loop for column
         for (int colNum = 1; colNum <= 2; colNum++) {
-            System.out.print("\t\t\t" + " Column " + (colNum) + "\t");
+            System.out.print("\t\t\t" + " Column " + (colNum));
         }
         System.out.println();
 
         //loop for row
         for (int rowNum = 1; rowNum < 10; rowNum++) {
-            System.out.println("Row    " + (rowNum) + "\t");
+            System.out.println("\t\t\t" + "Row    " + (rowNum) + "\t");
             //loop for printing row and col
             for (int col = 1; col <= 2; col++) {
                 matrix[rowNum][col] = '*';
-                System.out.print(matrix[rowNum][col] + "\t\t");
+                System.out.print("\t\t\t" + matrix[rowNum][col] + "\t\t");
 
             }
             System.out.println();
         }
 
         while (true) {
-            System.out.print("Enter row and column seperated by space : ");
+            System.out.print("\t\t\tEnter row and column seperated by space : ");
             int x = scanner.nextInt();
             int y = scanner.nextInt();
-            System.out.println("Row : " + x);
-            System.out.println("Column : " + y);
+            System.out.println("\t\t\tRow : " + x);
+            System.out.println("\t\t\tColumn : " + y);
 
             if ((x > 0 && y > 0)) {
                 System.out.println("\n \t\t\t Bus Seat Reservation ");
                 System.out.println();
-                System.out.println("\n---------------------------------------");
+                System.out.println("\n\t\t\t---------------------------------------");
 
                 for (int colNum = 1; colNum <= 2; colNum++) {
-                    System.out.print("Column " + (colNum) + "\t");
+                    System.out.print("\t\t\t\t" + "Column " + (colNum));
                 }
 
                 for (int rowNum = 1; rowNum <= 10; rowNum++) {
-                    System.out.print("\nRow " + (rowNum) + "\t");
+                    System.out.print("\n\t\t\tRow " + (rowNum) + "\t");
                     for (int col = 1; col <= 2; col++) {
                         matrix[x][y] = 'X';
-                        System.out.print(matrix[rowNum][col] + "\t\t");
+                        System.out.print("\t\t" + matrix[rowNum][col] + "\t\t");
                     }
                     System.out.println();
                 }
