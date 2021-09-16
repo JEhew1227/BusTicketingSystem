@@ -40,7 +40,6 @@ public class Customer extends Person implements Reservation {
 
     public Customer(Person person, String password, Card card) {
         super(person.getName());
-        this.custName = custName;
         this.custID = "CD" + Customer.nextID;
         this.password = password;
         Customer.nextID++;
@@ -52,8 +51,8 @@ public class Customer extends Person implements Reservation {
         this.password = password;
         this.card = card;
     }
-    
-    
+
+
 
     public static void add(Customer customer) {
         customerList.add(customer);
@@ -61,7 +60,7 @@ public class Customer extends Person implements Reservation {
 
     public static Customer search(String custName, String password) {
         for (int i = 0; i < customerList.size(); i++) {
-            if (customerList.get(i).getCustName().equals(custName) && customerList.get(i).getPassword().equals(password)) {
+            if (customerList.get(i).getName().equals(custName) && customerList.get(i).getPassword().equals(password)) {
                 return customerList.get(i);
             }
         }
@@ -76,14 +75,14 @@ public class Customer extends Person implements Reservation {
     }
 
     public static void deleteAccount(Customer customer){
-        
+
         Scanner scanner = new Scanner(System.in);
         char yesOrno;
-        
+
         do{
             System.out.printf("Are you sure you want to delete your account?(y/n)");
             yesOrno = scanner.next().charAt(0);
-        
+
         if(yesOrno == 'Y' || yesOrno == 'y'){
             System.out.println("\nYour account has been deleted\n");
             customerList.remove(customer);
@@ -144,7 +143,7 @@ public class Customer extends Person implements Reservation {
     public Card getCard(){
         return this.card;
     }
-    
+
     public String toString() {
         return String.format("%-30s %-10s %-5d %-15s %-15s",
                 custName, custID, reserveSeatNo, bus, ticket);
@@ -187,7 +186,7 @@ public class Customer extends Person implements Reservation {
             selection = scanner.nextInt();
 
             parseTicketUserChoice(selection, destination, matrix);
-            
+
 
         } while (selection != 3);
 
@@ -206,7 +205,7 @@ public class Customer extends Person implements Reservation {
                 for(int i =0 ; i < Schedule.scheduleList.size() ; i++){
                     Schedule schedule = Schedule.scheduleList.get(i);
                    System.out.printf("\t\t|  [%d] %-20s |    %s    |    RM%d    |\n", i+1, schedule.getDestination(), schedule.getDepartureTime(), 10);
-                           
+
                 }
                 System.out.println("\t \t *========================================================*");
                 System.out.println(""); // new line
@@ -220,10 +219,10 @@ public class Customer extends Person implements Reservation {
                 System.out.println(""); // new line
                 System.out.print(" \t \t Enter Destination : ");
                 destination = scanner.nextInt();
-                
+
                 destination(destination, matrix);
 
-                
+
 
             case 3:
                 System.out.println("Thank You and BYE !");
@@ -233,9 +232,9 @@ public class Customer extends Person implements Reservation {
 
         }
     }
-    
+
     private static void destination(int destination, char matrix[][]) {
-       
+
         if(destination < 0 || destination > Schedule.scheduleList.size()-1){
             return;
         }
@@ -244,7 +243,7 @@ public class Customer extends Person implements Reservation {
         System.out.println("\t \t *============================*");
         bookingSeat(matrix);
     }
-    
+
     private static void bookingSeat(char matrix[][]) {
 
         Scanner scanner = new Scanner(System.in);
@@ -319,7 +318,7 @@ public class Customer extends Person implements Reservation {
         boolean paid = Payment.performPayment(this, ticket);
         ticket.setPaidStatus(paid);
     }
-    
+
 }
 
 
