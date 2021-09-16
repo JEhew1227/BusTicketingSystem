@@ -29,7 +29,7 @@ public interface Payment {
         double total = ticket.calTotal();
         System.out.println(ticket.toString());
 
-        System.out.println("\t\t\tIs this information correct?");
+        System.out.print("\t\t\tIs this information correct?");
         char choice = scan.next().charAt(0);
         if (Character.toUpperCase(choice) != 'Y') {
             return false;
@@ -43,7 +43,7 @@ public interface Payment {
             System.out.println("\t\t\tIncorrect OTP code!");
             return false;
         }
-        System.out.println("\t\t\tEnter total: ");
+        System.out.print("\t\t\tEnter total: ");
         double inputTotal = scan.nextDouble();
         if (inputTotal < total) {
             System.out.println("\t\t\tInsufficient amount entered!");

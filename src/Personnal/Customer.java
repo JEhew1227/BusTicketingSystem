@@ -219,7 +219,7 @@ public class Customer extends Person implements Reservation {
             return null;
         }
         System.out.println("\t\t\t *============================*");
-        System.out.printf("\t\t\t *      %10s       *\n", Schedule.scheduleList.get(destination - 1).getDestination());
+        System.out.printf("\t\t\t *      %15s       *\n", Schedule.scheduleList.get(destination - 1).getDestination());
         System.out.println("\t\t\t *============================*");
         return bookingSeat(matrix);
     }
@@ -256,7 +256,7 @@ public class Customer extends Person implements Reservation {
             if ((x > 0 && y > 0)) {
                 System.out.println("\n \t\t\t Bus Seat Reservation ");
                 System.out.println();
-                System.out.println("\n\t\t\t---------------------------------------");
+                System.out.println("\t\t\t---------------------------------------");
 
                 for (int colNum = 1; colNum <= 2; colNum++) {
                     System.out.print("\t\t\t\t" + "Column " + (colNum));
