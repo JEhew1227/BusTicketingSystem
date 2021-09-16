@@ -302,5 +302,4 @@ public class Customer extends Person implements Reservation {
         boolean paid = Payment.performPayment(this, ticket);
         ticket.setPaidStatus(paid);
     }
-
 }
