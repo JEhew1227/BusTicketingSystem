@@ -5,10 +5,6 @@
  */
 package Management;
 
-// problems:
-// 1. make sure all methods return back to main method
-// 2. too many hard coded results, change to accessing the object's attributes
-// 3. fix the formatting
 import Asset.Schedule;
 import Asset.Ticket;
 import Personnal.Customer;
