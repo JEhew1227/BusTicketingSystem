@@ -231,8 +231,7 @@ public class Customer extends Person implements Reservation {
     public static Ticket bookingSeat(char matrix[][]) {
         int ticketCount = 1;
         Scanner scanner = new Scanner(System.in);
-        int ticketCount = 1;
-
+        
         //loop for column
         for (int colNum = 1; colNum <= 2; colNum++) {
             System.out.print("\t\t\t" + " Column " + (colNum));
