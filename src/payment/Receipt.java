@@ -13,6 +13,7 @@ import java.util.Calendar;
  * @author User
  */
 public class Receipt {
+
     private Customer customer;
     private Calendar datePaid;
     private boolean paidStatus;
@@ -66,12 +67,12 @@ public class Receipt {
 
     public static void printReceipt(Customer customer, Calendar datePaid, boolean paidStatus, int quantity, double amountPaid) {
         System.out.println("===========================\n");
-        System.out.println("|Customer Name:"+customer+"|\n" );
-        System.out.println("|Date Paid:   "+datePaid+" |\n");
-        System.out.println("|Paid Status: "+paidStatus+"|\n");
-        System.out.println("|No.of tickets:    "+quantity+"| \n");
+        System.out.println("|Customer Name:" + customer + "|\n");
+        System.out.println("|Date Paid:   " + datePaid + " |\n");
+        System.out.println("|Paid Status: " + paidStatus + "|\n");
+        System.out.println("|No.of tickets:    " + quantity + "| \n");
         System.out.println("===========================\n");
-        System.out.println("|Amount paid(RM) "+amountPaid+"| \n");
+        System.out.println("|Amount paid(RM) " + amountPaid + "| \n");
         System.out.println("===========================\n\n");
         System.out.println("Thank you and till next time:) ");
     }

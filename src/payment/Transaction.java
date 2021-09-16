@@ -11,14 +11,14 @@ import Asset.Ticket;
  *
  * @author KUNG WEI XIN
  */
-abstract public class Transaction implements Payment{
+abstract public class Transaction implements Payment {
 
     protected String paymentID;
     protected Ticket ticket;
     private static int nextTransactionID = 1000;
-    
+
     public Transaction(Ticket ticket) {
-        this.paymentID = "PMT"+Transaction.nextTransactionID;
+        this.paymentID = "PMT" + Transaction.nextTransactionID;
         this.ticket = ticket;
         Transaction.nextTransactionID++;
     }
@@ -27,6 +27,5 @@ abstract public class Transaction implements Payment{
         this.paymentID = paymentID;
         this.ticket = ticket;
     }
-    
-    
+
 }

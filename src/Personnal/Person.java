@@ -3,21 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Personnal;
 
 /**
  *
  * @author User
  */
+public class Person {
 
+    private String name;
 
-public class Person{
-    private String name; 
-    
     public Person(String name) {
         this.name = name;
-    }   
+    }
 
     public String getName() {
         return name;
@@ -26,6 +24,5 @@ public class Person{
     public void setName(String name) {
         this.name = name;
     }
-    
+
 }
-       

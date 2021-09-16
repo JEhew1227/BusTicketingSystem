@@ -4,18 +4,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Asset;
-
 
 /**
  *
  * @author User
  */
-
 public class Ticket {
+
     private final static double DEFAULT_PRICE = 10;
-    private double amount ;
+    private double amount;
     private int quantity;
     private boolean paidStatus;
 
@@ -31,11 +29,10 @@ public class Ticket {
         this.paidStatus = paidStatus;
     }
 
-    public void verifyPaidStatus(){
-        if (paidStatus = true){
+    public void verifyPaidStatus() {
+        if (paidStatus = true) {
             System.out.println("Payment has been made!");
-        }
-        else{
+        } else {
             System.out.println("Payment invalid!");
         }
     }
@@ -75,4 +72,3 @@ public class Ticket {
     
     
 }
-

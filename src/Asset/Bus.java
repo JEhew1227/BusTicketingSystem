@@ -13,7 +13,6 @@ import Personnal.Customer;
  *
  * @author JEhew
  */
-
 enum BusStatus {
     Early,
     OnTime,
@@ -23,7 +22,6 @@ enum BusStatus {
 public class Bus {
 
     private int busNo;
-    private int[] seatNumbers;
     private Driver driver;
     private ArrayList<Customer> customerList;
 
@@ -40,17 +38,16 @@ public class Bus {
         this.customerList = new ArrayList<>();
     }
 
-    public String toString(){
-        return String.format("%-5d %-15s %-5d ", busNo,driver);
+    public String toString() {
+        return String.format("%-5d %-15s %-5d ", busNo, driver);
 
     }
 
-    public void addCustomer(Customer customer){
+    public void addCustomer(Customer customer) {
         customerList.add(customer);
     }
 
-    public void deleteCustomer(Customer customer){
+    public void deleteCustomer(Customer customer) {
         customerList.remove(customer);
     }
 }
-

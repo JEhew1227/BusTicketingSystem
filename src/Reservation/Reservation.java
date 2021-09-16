@@ -10,10 +10,9 @@ package Reservation;
  * @author JEhew
  */
 public interface Reservation {
-    
-    public void reserveTicket();
-    
-    public void payTicket();
-    
-}
 
+    public void reserveTicket();
+
+    public void payTicket();
+
+}
