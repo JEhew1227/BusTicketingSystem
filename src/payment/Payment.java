@@ -13,22 +13,23 @@ import java.util.Scanner;
  * @author KUNG WEI XIN
  */
 public interface Payment {
-    
+
 
     //work in progress
+    // its ok, good luck
     public static boolean performPayment(Customer customer, Ticket ticket){
         //display get ticket information
         Scanner scan = new Scanner(System.in);
         double total = ticket.calTotal();
         System.out.println(ticket.toString());
-        
-        
+
+
         System.out.println("Is this information correct?");
         char choice = scan.next().charAt(0);
-        if(choice != 'Y'){
+        if(Character.toUpperCase(choice) != 'Y'){
             return false;
         }
-        
+
         String otp = generateOTP();
         System.out.println("OTP: "+otp);
         System.out.print("Enter Your OTP code: ");
@@ -39,24 +40,22 @@ public interface Payment {
         }
         System.out.println("Enter total: ");
         double inputTotal = scan.nextDouble();
-        if(inputTotal < total){
+        if (inputTotal < total){
             System.out.println("Insufficient amount entered!");
             return false;
         }
-        
+
         double balance = customer.getCard().getBalance();
         balance -= total;
         customer.getCard().setBalance(balance);
         return true;
-
-        
     }
-    
+
     public static String generateOTP(){
         String alphabets =  "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String numbers = "0123456789";
         String otp = "";
-        
+
         for (int i = 0; i < 3; i++) {
             int index =(int)Math.random()*alphabets.length();
             otp+=alphabets.charAt(index);
@@ -67,10 +66,11 @@ public interface Payment {
         }
         return otp;
     }
+
     public static double generateRandomBalance(){
         return generateRandomBalance(1000, 6000);
     }
-    
+
     public static double generateRandomBalance(int min, int max){
          return ((Math.random() * (max - min)) + min);
     }

@@ -18,7 +18,7 @@ public class Ticket {
     private double amount ;
     private int quantity;
     private boolean paidStatus;
-    
+
     public Ticket(double amount, int quantity, boolean paidStatus) {
         this.amount = amount;
         this.quantity = quantity;
@@ -43,15 +43,15 @@ public class Ticket {
     public int getQuantity() {
         return quantity;
     }
-    
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
+
     public boolean isPaidStatus() {
         return paidStatus;
     }
-   
+
     public void setPaidStatus(boolean paidStatus) {
         this.paidStatus = paidStatus;
     }
@@ -67,7 +67,5 @@ public class Ticket {
     public double calTotal() {
         return this.amount * this.quantity;
     }
-    
-    
 }
 

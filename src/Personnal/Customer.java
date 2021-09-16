@@ -39,17 +39,15 @@ public class Customer extends Person implements Reservation {
     private static int nextID = 1000;
 
     public Customer(Person person, String password, Card card) {
-        super(person.getName());
-        this.custID = "CD" + Customer.nextID;
-        this.password = password;
-        Customer.nextID++;
-
+        this(person.getName(), password, card);
     }
 
     public Customer(String name, String password, Card card) {
         super(name);
+        this.custID = "CD" + nextID;
         this.password = password;
         this.card = card;
+        ++nextID;
     }
 
 
@@ -64,9 +62,7 @@ public class Customer extends Person implements Reservation {
                 return customerList.get(i);
             }
         }
-
         return null;
-
     }
 
     public static void edit(Customer oldCustomer, Customer newCustomer) {
@@ -150,22 +146,6 @@ public class Customer extends Person implements Reservation {
 
     }
 
-    public void addSchedule(Schedule schedule) {
-        scheduleList.add(schedule);
-    }
-
-    public void deleteSchedule(Schedule schedule) {
-        scheduleList.remove(schedule);
-    }
-
-    public void editSchedule(Schedule schedule) {
-        scheduleList.set(0, schedule);
-    }
-
-    public void viewSchedule(Schedule schedule) {
-        System.out.println(Arrays.toString(scheduleList.toArray()));
-    }
-
     @Override
     public void reserveTicket() {
         Scanner scanner = new Scanner(System.in);
@@ -185,16 +165,19 @@ public class Customer extends Person implements Reservation {
             System.out.print(" \t \t Enter your choice : ");
             selection = scanner.nextInt();
 
-            parseTicketUserChoice(selection, destination, matrix);
+            Ticket ticket = parseTicketUserChoice(selection, destination, matrix);
 
-
+            if (ticket != null) {
+                this.setTicket(ticket);
+            }
         } while (selection != 3);
 
     }
 
-    public static void parseTicketUserChoice(int selection, int destination, char matrix[][]) {
+    public static Ticket parseTicketUserChoice(int selection, int destination, char matrix[][]) {
 
         Scanner scanner = new Scanner(System.in);
+        Ticket ticket = null;
         switch (selection) {
             case 1:
                 System.out.println("\t \t *========================================================*");
@@ -202,10 +185,9 @@ public class Customer extends Person implements Reservation {
                 System.out.println("\t \t *========================================================*");
                 System.out.println("\t \t |     Destination         |     Time      |     Price    |");
                 System.out.println("\t \t *========================================================*");
-                for(int i =0 ; i < Schedule.scheduleList.size() ; i++){
+                for(int i = 0 ; i < Schedule.scheduleList.size() ; i++){
                     Schedule schedule = Schedule.scheduleList.get(i);
-                   System.out.printf("\t\t|  [%d] %-20s |    %s    |    RM%d    |\n", i+1, schedule.getDestination(), schedule.getDepartureTime(), 10);
-
+                    System.out.printf("\t\t|  [%d] %-20s |    %s    |    RM%d    |\n", i+1, schedule.getDestination(), schedule.getDepartureTime(), 10);
                 }
                 System.out.println("\t \t *========================================================*");
                 System.out.println(""); // new line
@@ -220,9 +202,7 @@ public class Customer extends Person implements Reservation {
                 System.out.print(" \t \t Enter Destination : ");
                 destination = scanner.nextInt();
 
-                destination(destination, matrix);
-
-
+                ticket = destination(destination, matrix);
 
             case 3:
                 System.out.println("Thank You and BYE !");
@@ -231,20 +211,21 @@ public class Customer extends Person implements Reservation {
                 break;
 
         }
+        return ticket;
     }
 
-    private static void destination(int destination, char matrix[][]) {
+    private static Ticket destination(int destination, char matrix[][]) {
 
         if(destination < 0 || destination > Schedule.scheduleList.size()-1){
-            return;
+            return null;
         }
         System.out.println("\t \t *============================*");
         System.out.printf("\t \t *%10s\n", Schedule.scheduleList.get(destination).getDestination());
         System.out.println("\t \t *============================*");
-        bookingSeat(matrix);
+        return bookingSeat(matrix);
     }
 
-    private static void bookingSeat(char matrix[][]) {
+    private static Ticket bookingSeat(char matrix[][]) {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -265,6 +246,7 @@ public class Customer extends Person implements Reservation {
             }
             System.out.println();
         }
+
         while (true) {
             System.out.print("Enter row and column seperated by space : ");
             int x = scanner.nextInt();
@@ -303,11 +285,13 @@ public class Customer extends Person implements Reservation {
             } else {
                 System.out.println(" Enjoy Your Trip !");
                 break;
-
             }
 
         }
 
+        scanner.close();
+        // create ticket
+        return new Ticket(10, 1, false);
     }
 //work in progress
    @Override
