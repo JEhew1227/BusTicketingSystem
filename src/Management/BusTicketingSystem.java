@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Management;
 
 
@@ -115,12 +120,12 @@ public class BusTicketingSystem {
         }
     }
     
-     private static void performLogin(){
+        private static void performLogin(){
         
-        System.out.print("Enter your username :\n");
+        System.out.printf("Enter your username :");
         String userName = scanner.nextLine();
         
-        System.out.print("\nEnter your password :");
+        System.out.printf("\nEnter your password :");
         String password = scanner.nextLine();
         
         Customer customer = Customer.search(userName, password);
@@ -164,19 +169,21 @@ public class BusTicketingSystem {
         switch(choice){
             case 1:
                 Registration.editAccount();
+                mainMenuChoice();
                 break;
+            case 2:
+                Customer.deleteAccount(loggedInUser);
+                mainMenuChoice();
+                break;
+            case 3:
+                //display customer info
+                break;
+            case 4:
+                mainMenuChoice();
         }
     }
     
     private static void scheduleChoice(){
-        switch(choice){
-            case 1:
-                
-                break;
-        }
-    }
-    
-    private static void reserveChoice(){
         switch(choice){
             case 1:
                 
