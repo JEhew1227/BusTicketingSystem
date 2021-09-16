@@ -75,18 +75,19 @@ public class Customer extends Person implements Reservation {
         Scanner scanner = new Scanner(System.in);
         char yesOrno;
 
-        do {
+
             System.out.printf("\t\t\tAre you sure you want to delete your account?(y/n)");
             yesOrno = scanner.next().charAt(0);
 
             if (yesOrno == 'Y' || yesOrno == 'y') {
-                System.out.println("\nYour account has been deleted\n");
+                System.out.println("\n\t\t\tYour account has been deleted\n");
                 customerList.remove(customer);
 
-            }  else {
-                System.out.println("\nInvalid Choice, please enter again.\n");
+            }  
+            else {
+                System.out.println("\n\t\t\tInvalid Choice, please enter again.\n");
+                
             }
-        } while (yesOrno != 'y' || yesOrno != 'n');
     }
 
     public String getCustName() {
