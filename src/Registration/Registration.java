@@ -22,6 +22,13 @@ public interface Registration {
         final int NUM_UPPER_LETTERS = 1;
         final int NUM_LOWER_LETTERS = 1;
         final int NUM_DIGITS = 1;
+        final int NUM_UPPER_LETTERS_PASS = 1;
+        final int NUM_LOWER_LETTERS_PASS = 1;
+        final int NUM_DIGITS_PASS = 1;
+
+        int upperCount_pass = 0;
+        int lowerCount_pass = 0;
+        int digitCount_pass = 0;
         int upperCount = 0;
         int lowerCount = 0;
         int digitCount = 0;
@@ -46,9 +53,11 @@ public interface Registration {
 
             if (Character.isUpperCase(nm)) {
                 upperCount++;
-            } else if (Character.isLowerCase(nm)) {
+            }
+            if (Character.isLowerCase(nm)) {
                 lowerCount++;
-            } else if (Character.isDigit(nm)) {
+            }
+            if (Character.isDigit(nm)) {
                 digitCount++;
             }
 
@@ -66,9 +75,15 @@ public interface Registration {
                 System.out.println("\n\t\t\tYour username need to have at least 1 DIGIT!");
             }
 
+            upperCount = 0;
+            lowerCount = 0;
+            digitCount = 0;
+
             System.out.println("\n\t\t\t-----------------------------");
-            System.out.print("\t\t\tPlease re-enter your username >");
+            System.out.print("Please re-enter your username >");
             userName = scanner.nextLine();
+
+            nameLen = userName.length();
 
             for (int n = 0; n < nameLen; n++) {
 
@@ -76,9 +91,11 @@ public interface Registration {
 
                 if (Character.isUpperCase(nm)) {
                     upperCount++;
-                } else if (Character.isLowerCase(nm)) {
+                }
+                if (Character.isLowerCase(nm)) {
                     lowerCount++;
-                } else if (Character.isDigit(nm)) {
+                }
+                if (Character.isDigit(nm)) {
                     digitCount++;
                 }
 
@@ -88,7 +105,7 @@ public interface Registration {
 
         System.out.print("\n\t\t\tEnter password >");
         password = scanner.nextLine();
-        //String password = new String(System.console().readPassword());
+
         int passLen = password.length();
 
         for (int i = 0; i < passLen; i++) {
@@ -96,38 +113,49 @@ public interface Registration {
             char pw = password.charAt(i);
 
             if (Character.isUpperCase(pw)) {
-                upperCount++;
-            } else if (Character.isLowerCase(pw)) {
-                lowerCount++;
-            } else if (Character.isDigit(pw)) {
-                digitCount++;
+                upperCount_pass++;
+            }
+            if (Character.isLowerCase(pw)) {
+                lowerCount_pass++;
+            }
+            if (Character.isDigit(pw)) {
+                digitCount_pass++;
             }
         }
-        while (upperCount < NUM_UPPER_LETTERS || lowerCount < NUM_LOWER_LETTERS || digitCount < NUM_DIGITS) {
+        while (upperCount_pass < NUM_UPPER_LETTERS_PASS || lowerCount_pass < NUM_LOWER_LETTERS_PASS || digitCount_pass < NUM_DIGITS_PASS) {
 
-            if (upperCount < NUM_UPPER_LETTERS) {
+            if (upperCount_pass < NUM_UPPER_LETTERS_PASS) {
                 System.out.println("\n\t\t\tYour password need to have at least 1 UPPERCASE letter!");
             }
-            if (lowerCount < NUM_LOWER_LETTERS) {
+            if (lowerCount_pass < NUM_LOWER_LETTERS_PASS) {
                 System.out.println("\n\t\t\tYour password need to have at least 1 LOWERCASE letter!");
             }
-            if (digitCount < NUM_DIGITS) {
+            if (digitCount_pass < NUM_DIGITS_PASS) {
                 System.out.println("\n\t\t\tYour password need to have at least 1 DIGIT!");
             }
 
+            upperCount_pass = 0;
+            lowerCount_pass = 0;
+            digitCount_pass = 0;
+
+            System.out.println("\n\t\t\t-----------------------------");
             System.out.print("\t\t\tPlease re-enter your password >");
             password = scanner.nextLine();
+
+            passLen = password.length();
 
             for (int i = 0; i < passLen; i++) {
 
                 char pw = password.charAt(i);
 
                 if (Character.isUpperCase(pw)) {
-                    upperCount++;
-                } else if (Character.isLowerCase(pw)) {
-                    lowerCount++;
-                } else if (Character.isDigit(pw)) {
-                    digitCount++;
+                    upperCount_pass++;
+                }
+                if (Character.isLowerCase(pw)) {
+                    lowerCount_pass++;
+                }
+                if (Character.isDigit(pw)) {
+                    digitCount_pass++;
                 }
             }
         }

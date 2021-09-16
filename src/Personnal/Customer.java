@@ -292,7 +292,7 @@ public class Customer extends Person implements Reservation {
             
         }
         // create ticket
-        return new Ticket(10, 1, false);
+        return new Ticket(10, ticketCount, false);
     }
 
     @Override
