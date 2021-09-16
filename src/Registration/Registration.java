@@ -80,7 +80,7 @@ public interface Registration {
             digitCount = 0;
 
             System.out.println("\n\t\t\t-----------------------------");
-            System.out.print("Please re-enter your username >");
+            System.out.print("\t\t\tPlease re-enter your username >");
             userName = scanner.nextLine();
 
             nameLen = userName.length();
