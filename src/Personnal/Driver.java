@@ -11,7 +11,7 @@ package Personnal;
  */
 public class Driver extends Person {
 
-    private String driverID;
+    String driverID;
     private static int nextID = 100;
 
     public Driver(String name) {
@@ -20,6 +20,24 @@ public class Driver extends Person {
         ++nextID;
     }
 
+    public String getDriverID() {
+        return driverID;
+    }
+
+    public void setDriverID(String driverID) {
+        this.driverID = driverID;
+    }
+
+    public static int getNextID() {
+        return nextID;
+    }
+
+    public static void setNextID(int nextID) {
+        Driver.nextID = nextID;
+    }
+
+    
+    
     public String toString() {
         return "Driver Id: " + driverID + "\n";
     }
