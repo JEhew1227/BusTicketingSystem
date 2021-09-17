@@ -38,10 +38,6 @@ public interface Registration {
         String userName;
         String password;
 
-        System.out.println("\t\t\t\t\t\t=====================");
-        System.out.println("\t\t\t\t\t\t|   REGISTERATION    |");
-        System.out.println("\t\t\t\t\t\t=====================");
-
         System.out.print("\n\t\t\t\t\tEnter username(name you wish to be display as)>");
         userName = scanner.nextLine();
 
