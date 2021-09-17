@@ -172,15 +172,15 @@ public class BusTicketingSystem {
     private static void parseAccountMenu() {
         switch (choice) {
             case 1:
-                System.out.println("\t\t\t=====================");
-                System.out.println("\t\t\t|   EDIT ACCOUNT    |");
-                System.out.println("\t\t\t=====================");
+                System.out.println("\t\t\t\t\t\t=====================");
+                System.out.println("\t\t\t\t\t\t|   EDIT ACCOUNT    |");
+                System.out.println("\t\t\t\t\t\t=====================");
                 Registration.editAccount();
                 break;
             case 2:
-                System.out.println("\t\t\t=====================");
-                System.out.println("\t\t\t|   DELETE ACCOUNT   |");
-                System.out.println("\t\t\t=====================");
+                System.out.println("\t\t\t\t\t\t=====================");
+                System.out.println("\t\t\t\t\t\t|   DELETE ACCOUNT   |");
+                System.out.println("\t\t\t\t\t\t=====================");
                 Customer.deleteAccount(loggedInUser);
                 break;
             case 3:
