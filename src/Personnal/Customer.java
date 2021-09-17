@@ -78,16 +78,16 @@ public class Customer extends Person implements Reservation {
         char yesOrno;
 
 
-            System.out.printf("\t\t\tAre you sure you want to delete your account?(y/n)");
+            System.out.printf("\t\t\t\t\tAre you sure you want to delete your account?(y/n)");
             yesOrno = scanner.next().charAt(0);
 
             if (yesOrno == 'Y' || yesOrno == 'y') {
-                System.out.println("\n\t\t\tYour account has been deleted\n");
+                System.out.println("\n\t\t\t\t\tYour account has been deleted\n");
                 customerList.remove(customer);
 
             }  
             else {
-                System.out.println("\n\t\t\tInvalid Choice, please enter again.\n");
+                System.out.println("\n\t\t\t\t\tInvalid Choice, please enter again.\n");
                 
             }
     }
@@ -158,15 +158,15 @@ public class Customer extends Person implements Reservation {
         char matrix[][] = new char[11][10];
 
         do {
-            System.out.println("\t\t\t *=====================*");
-            System.out.println("\t\t\t |     Reservation     |");
-            System.out.println("\t\t\t *=====================*");
-            System.out.println("\t\t\t | [1] Destination     |");
-            System.out.println("\t\t\t | [2] Booking Ticket  |");
-            System.out.println("\t\t\t | [3] Exit            |");
-            System.out.println("\t\t\t *=====================*");
+            System.out.println("\t\t\t\t\t\t *=====================*");
+            System.out.println("\t\t\t\t\t\t |     Reservation     |");
+            System.out.println("\t\t\t\t\t\t *=====================*");
+            System.out.println("\t\t\t\t\t\t | [1] Destination     |");
+            System.out.println("\t\t\t\t\t\t | [2] Booking Ticket  |");
+            System.out.println("\t\t\t\t\t\t | [3] Exit            |");
+            System.out.println("\t\t\t\t\t\t *=====================*");
             System.out.println(""); // new line
-            System.out.print(" \t\t\t Enter your choice : ");
+            System.out.print(" \t\t\t\t\t Enter your choice : ");
             selection = scanner.nextInt();
 
             Ticket ticket = parseTicketUserChoice(selection, destination, matrix);
@@ -199,18 +199,18 @@ public class Customer extends Person implements Reservation {
                 break;
 
             case 2:
-                System.out.println("\t\t\t *============================*");
-                System.out.println("\t\t\t |       Booking Ticket       *");
-                System.out.println("\t\t\t *============================*");
+                System.out.println("\t\t\t\t\t *============================*");
+                System.out.println("\t\t\t\t\t |       Booking Ticket       *");
+                System.out.println("\t\t\t\t\t *============================*");
                 System.out.println(""); // new line
-                System.out.print(" \t\t\t Enter Destination : ");
+                System.out.print(" \t\t\t\t\t Enter Destination : ");
                 destination = scanner.nextInt();
 
                 ticket = destination(destination, matrix);
 
             case 3:
-                System.out.println("\t\t\tThank You and BYE !");
-                System.out.println("\t\t\tHave A Nice Day ! ");
+                System.out.println("\t\t\t\t\tThank You and BYE !");
+                System.out.println("\t\t\t\t\tHave A Nice Day ! ");
                 break;
 
         }
@@ -222,9 +222,9 @@ public class Customer extends Person implements Reservation {
         if (destination < 0 || destination > Schedule.scheduleList.size() ) {
             return null;
         }
-        System.out.println("\t\t\t *============================*");
-        System.out.printf("\t\t\t *      %15s       *\n", Schedule.scheduleList.get(destination - 1).getDestination());
-        System.out.println("\t\t\t *============================*");
+        System.out.println("\t\t\t\t\t *============================*");
+        System.out.printf("\t\t\t\t\t *      %15s       *\n", Schedule.scheduleList.get(destination - 1).getDestination());
+        System.out.println("\t\t\t\t\t *============================*");
         return bookingSeat(matrix);
     }
 
@@ -234,53 +234,52 @@ public class Customer extends Person implements Reservation {
         
         //loop for column
         for (int colNum = 1; colNum <= 2; colNum++) {
-            System.out.print("\t\t\t" + " Column " + (colNum));
+            System.out.print("\t\t\t\t\t" + " Column " + (colNum));
         }
         System.out.println();
 
         //loop for row
         for (int rowNum = 1; rowNum < 10; rowNum++) {
-            System.out.println("\t\t\t" + "Row    " + (rowNum) + "\t");
+            System.out.println("\t\t\t\t\t" + "Row    " + (rowNum) + "\t");
             //loop for printing row and col
             for (int col = 1; col <= 2; col++) {
                 matrix[rowNum][col] = '*';
-                System.out.print("\t\t\t" + matrix[rowNum][col] + "\t\t");
+                System.out.print("\t\t\t\t\t" + matrix[rowNum][col] + "\t\t");
 
             }
             System.out.println();
         }
 
         while (true) {
-            System.out.print("\t\t\tEnter row and column seperated by space : ");
+            System.out.print("\t\t\t\t\tEnter row and column seperated by space : ");
             int x = scanner.nextInt();
             int y = scanner.nextInt();
-            System.out.println("\t\t\tRow : " + x);
-            System.out.println("\t\t\tColumn : " + y);
+            System.out.println("\t\t\t\t\tRow : " + x);
+            System.out.println("\t\t\t\t\tColumn : " + y);
 
             if ((x > 0 && y > 0)) {
-                System.out.println("\n \t\t\t\t Bus Seat Reservation ");
-                System.out.println();
-                System.out.println("\t\t\t-------------------------------------------------");
+                System.out.println("\n \t\t\t\t\t\t Bus Seat Reservation ");
+                System.out.println("\t\t\t\t\t-------------------------------------------------");
 
                 for (int colNum = 1; colNum <= 2; colNum++) {
-                    System.out.print("\t\t\t\t" + "Column " + (colNum));
+                    System.out.print("\t\t\t\t\t\t" + "Column " + (colNum));
                 }
 
                 for (int rowNum = 1; rowNum <= 10; rowNum++) {
-                    System.out.print("\n\t\t\tRow " + (rowNum) + "\t");
+                    System.out.print("\n\t\t\t\t\tRow " + (rowNum) + "\t");
                     for (int col = 1; col <= 2; col++) {
                         matrix[x][y] = 'X';
-                        System.out.print("\t\t" + matrix[rowNum][col] + "\t\t");
+                        System.out.print("\t\t\t\t" + matrix[rowNum][col] + "\t\t");
                     }
                     System.out.println();
                 }
             } else {
-                System.out.println("\t\t\tBooking Failed ! - Please Booking Again !");
+                System.out.println("\t\t\t\t\tBooking Failed ! - Please Booking Again !");
                 break;
             }
 
-            System.out.println("\t\t\tYou Have Successfully booking a seat !");
-            System.out.print("\t\t\tDo you want booking another seat ? (Y/N) : ");
+            System.out.println("\t\t\t\t\tYou Have Successfully booking a seat !");
+            System.out.print("\t\t\t\t\tDo you want booking another seat ? (Y/N) : ");
             char option = scanner.next().charAt(0);
             
             if (option == 'Y' || option == 'y') {
@@ -288,7 +287,7 @@ public class Customer extends Person implements Reservation {
                 ticketCount++;
                 continue;
             } else {
-                System.out.println(" \t\t\tEnjoy Your Trip !");
+                System.out.println(" \t\t\t\t\tEnjoy Your Trip !");
                 break;
             }
             

@@ -38,11 +38,11 @@ public interface Registration {
         String userName;
         String password;
 
-        System.out.println("\t\t\t=====================");
-        System.out.println("\t\t\t|   REGISTERATION    |");
-        System.out.println("\t\t\t=====================");
+        System.out.println("\t\t\t\t\t\t=====================");
+        System.out.println("\t\t\t\t\t\t|   REGISTERATION    |");
+        System.out.println("\t\t\t\t\t\t=====================");
 
-        System.out.print("\n\t\t\tEnter username(name you wish to be display as)>");
+        System.out.print("\n\t\t\t\t\tEnter username(name you wish to be display as)>");
         userName = scanner.nextLine();
 
         int nameLen = userName.length();
@@ -66,21 +66,21 @@ public interface Registration {
         while (upperCount < NUM_UPPER_LETTERS || lowerCount < NUM_LOWER_LETTERS || digitCount < NUM_DIGITS) {
 
             if (upperCount < NUM_UPPER_LETTERS) {
-                System.out.println("\n\t\t\tYour username need to have at least 1 UPPERCASE letter!");
+                System.out.println("\n\t\t\t\t\tYour username need to have at least 1 UPPERCASE letter!");
             }
             if (lowerCount < NUM_LOWER_LETTERS) {
-                System.out.println("\n\t\t\tYour username need to have at least 1 LOWERCASE letter!");
+                System.out.println("\n\t\t\t\t\tYour username need to have at least 1 LOWERCASE letter!");
             }
             if (digitCount < NUM_DIGITS) {
-                System.out.println("\n\t\t\tYour username need to have at least 1 DIGIT!");
+                System.out.println("\n\t\t\t\t\tYour username need to have at least 1 DIGIT!");
             }
 
             upperCount = 0;
             lowerCount = 0;
             digitCount = 0;
 
-            System.out.println("\n\t\t\t-----------------------------");
-            System.out.print("\t\t\tPlease re-enter your username >");
+            System.out.println("\n\t\t\t\t\t-----------------------------");
+            System.out.print("\t\t\t\t\tPlease re-enter your username >");
             userName = scanner.nextLine();
 
             nameLen = userName.length();
@@ -103,7 +103,7 @@ public interface Registration {
 
         }
 
-        System.out.print("\n\t\t\tEnter password >");
+        System.out.print("\n\t\t\t\t\tEnter password >");
         password = scanner.nextLine();
 
         int passLen = password.length();
@@ -125,21 +125,21 @@ public interface Registration {
         while (upperCount_pass < NUM_UPPER_LETTERS_PASS || lowerCount_pass < NUM_LOWER_LETTERS_PASS || digitCount_pass < NUM_DIGITS_PASS) {
 
             if (upperCount_pass < NUM_UPPER_LETTERS_PASS) {
-                System.out.println("\n\t\t\tYour password need to have at least 1 UPPERCASE letter!");
+                System.out.println("\n\t\t\t\t\tYour password need to have at least 1 UPPERCASE letter!");
             }
             if (lowerCount_pass < NUM_LOWER_LETTERS_PASS) {
-                System.out.println("\n\t\t\tYour password need to have at least 1 LOWERCASE letter!");
+                System.out.println("\n\t\t\t\t\tYour password need to have at least 1 LOWERCASE letter!");
             }
             if (digitCount_pass < NUM_DIGITS_PASS) {
-                System.out.println("\n\t\t\tYour password need to have at least 1 DIGIT!");
+                System.out.println("\n\t\t\t\t\tYour password need to have at least 1 DIGIT!");
             }
 
             upperCount_pass = 0;
             lowerCount_pass = 0;
             digitCount_pass = 0;
 
-            System.out.println("\n\t\t\t-----------------------------");
-            System.out.print("\t\t\tPlease re-enter your password >");
+            System.out.println("\n\t\t\t\t\t-----------------------------");
+            System.out.print("\t\t\t\t\tPlease re-enter your password >");
             password = scanner.nextLine();
 
             passLen = password.length();
@@ -163,10 +163,10 @@ public interface Registration {
         Card card = performRegistrationCard();
 
         while (card == null) {
-            System.out.println("\t\t\tInvalid card information");
+            System.out.println("\t\t\t\t\tInvalid card information");
             card = performRegistrationCard();
         }
-        System.out.println("\t\t\tYou have successfully registered");
+        System.out.println("\t\t\t\t\tYou have successfully registered");
         Customer customer = new Customer(userName, password, card);
         Customer.add(customer);
         return customer;
@@ -178,19 +178,19 @@ public interface Registration {
         int cvv;
         Calendar expiryDate = Calendar.getInstance();
 
-        System.out.print("\n\t\t\tEnter your Card number >");
+        System.out.print("\n\t\t\t\t\tEnter your Card number >");
         cardNum = scanner.nextLine();
 
-        System.out.print("\n\t\t\tEnter your Card expiry date (month)>");
+        System.out.print("\n\t\t\t\t\tEnter your Card expiry date (month)>");
         int month = scanner.nextInt();
         --month;
-        System.out.print("\n\t\t\tEnter your Card expiry date (year)>");
+        System.out.print("\n\t\t\t\t\tEnter your Card expiry date (year)>");
         int year = scanner.nextInt();
 
         expiryDate.set(Calendar.MONTH, month);
         expiryDate.set(Calendar.YEAR, year);
 
-        System.out.print("\n\t\t\tEnter you Card cvv number >");
+        System.out.print("\n\t\t\t\t\tEnter you Card cvv number >");
         cvv = scanner.nextInt();
 
         int monthExpiryDate = expiryDate.get(Calendar.MONTH) + 1;
@@ -201,10 +201,10 @@ public interface Registration {
     }
 
     public static void editAccount() {
-        System.out.println("\t\t\tEDIT ACCOUNT....");
+        System.out.println("\t\t\t\t\tEDIT ACCOUNT....");
 
         performRegistration();
-        System.out.println("\t\t\tAccount edited..");
+        System.out.println("\t\t\t\t\tAccount edited..");
     }
 
 }
