@@ -234,8 +234,4 @@ public class BusTicketingSystem {
 
         scanner.close();
     }
-
-    public static void cls() throws IOException, InterruptedException {
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-    }
 }
