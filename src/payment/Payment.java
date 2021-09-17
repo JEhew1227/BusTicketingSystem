@@ -70,11 +70,11 @@ public interface Payment {
         String otp = "";
 
         for (int i = 0; i < 3; i++) {
-            int index = (int) Math.random() * alphabets.length();
+            int index = (int) (Math.random() * alphabets.length());
             otp += alphabets.charAt(index);
         }
         for (int i = 0; i < 6; i++) {
-            int index = (int) Math.random() * numbers.length();
+            int index = (int) (Math.random() * numbers.length());
             otp += numbers.charAt(index);
         }
         return otp;

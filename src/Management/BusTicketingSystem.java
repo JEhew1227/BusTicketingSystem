@@ -95,7 +95,7 @@ public class BusTicketingSystem {
             parseChoice();
         }
     }
-
+    
     private static void parseChoice() {
         switch (flag) {
             case Flags.NO_LOGIN:
