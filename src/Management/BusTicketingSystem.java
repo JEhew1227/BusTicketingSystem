@@ -80,8 +80,9 @@ public class BusTicketingSystem {
 
     public static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException, IOException {
         init();
+        cls();
         System.out.println("\t\t\t ___ _   _ ___   _____ ___ ___ _  _____ _____ ___ _  _  ___   _____   _____ _____ ___ __  __ ");
         System.out.println("\t\t\t| _ ) | | / __| |_   _|_ _/ __| |/ / __|_   _|_ _| \\| |/ __| / __\\ \\ / / __|_   _| __|  \\/  |");
         System.out.println("\t\t\t| _ \\ |_| \\__ \\   | |  | | (__| ' <| _|  | |  | || .` | (_ | \\__ \\\\ V /\\__ \\ | | | _|| |\\/| |");
@@ -93,6 +94,28 @@ public class BusTicketingSystem {
             System.out.print("\n\t\t\t\t\tWhat is your choice: ");
             choice = scanner.nextInt();
             parseChoice();
+            pressEnterKey();
+            cls();
+        }
+        
+    }
+    
+    public static void cls() throws InterruptedException, IOException {
+        try {
+            // windows clear screen command
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } catch (InterruptedException | IOException e) {
+            // linux clear screen command
+            new ProcessBuilder("clear").inheritIO().start().waitFor();
+        }
+    }
+    
+    public static void pressEnterKey(){
+        System.out.println("\t\t\t\t\tPress \"ENTER\" to continue...");
+        try {
+            int read = System.in.read(new byte[2]);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     
@@ -110,12 +133,13 @@ public class BusTicketingSystem {
         }
     }
 
-    private static void parseRegistration() {
+    private static void parseRegistration(){
         switch (choice) {
             case 1:
                 Registration.performRegistration();
                 break;
             case 2:
+              
                 performLogin();
                 break;
             case 3:

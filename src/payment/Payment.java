@@ -39,7 +39,7 @@ public interface Payment {
             System.out.print("\t\t\t\t\tEnter Your OTP code: ");
             String inputOTP = scan.next();
             if (!inputOTP.equals(otp)) {
-                System.out.print("\t\t\t\t\tIncorrect OTP code!");
+                System.out.print("\t\t\t\t\tIncorrect OTP code!\n");
                 return false;
             }
 
