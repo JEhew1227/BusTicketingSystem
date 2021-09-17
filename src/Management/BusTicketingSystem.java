@@ -28,44 +28,44 @@ interface Flags {
 interface Menu {
 
     static void welcomeMessage() {
-        System.out.println("\t\t\tWELCOME!!!!");
-        System.out.println("\t\t\tTHIS IS A BUS RESERVATION AND TICKETING SYSTEM...");
+        System.out.println("\t\t\t\t\t\t\tWELCOME!!!!");
+        System.out.println("\t\t\t\t\tTHIS IS A BUS RESERVATION AND TICKETING SYSTEM...");
     }
 
     static void mainMenu() {
-        System.out.println("\t\t\t --------------------------");
-        System.out.println("\t\t\t|         MAIN MENU        |");
-        System.out.println("\t\t\t --------------------------");
-        System.out.println("\t\t\t|     1 : Account          |");
-        System.out.println("\t\t\t|     2 : Reservation      |");
-        System.out.println("\t\t\t|     3 : Payment          |");
-        System.out.println("\t\t\t|     4 : Log Out          |");
-        System.out.println("\t\t\t --------------------------");
+        System.out.println("\t\t\t\t\t\t --------------------------");
+        System.out.println("\t\t\t\t\t\t|         MAIN MENU        |");
+        System.out.println("\t\t\t\t\t\t --------------------------");
+        System.out.println("\t\t\t\t\t\t|     1 : Account          |");
+        System.out.println("\t\t\t\t\t\t|     2 : Reservation      |");
+        System.out.println("\t\t\t\t\t\t|     3 : Payment          |");
+        System.out.println("\t\t\t\t\t\t|     4 : Log Out          |");
+        System.out.println("\t\t\t\t\t\t --------------------------");
     }
 
     static void regMenu() {
-        System.out.println("\t\t\t ------------------------------------------");
-        System.out.println("\t\t\t|   BUS RESERVATION AND TICKETING SYSTEM   |");
-        System.out.println("\t\t\t ------------------------------------------ ");
-        System.out.println("\t\t\t| 1 : Register an account                  |");
-        System.out.println("\t\t\t| 2 : Login                                |");
-        System.out.println("\t\t\t| 3 : Exit                                 |");
-        System.out.println("\t\t\t ------------------------------------------\n");
+        System.out.println("\t\t\t\t\t ------------------------------------------");
+        System.out.println("\t\t\t\t\t|   BUS RESERVATION AND TICKETING SYSTEM   |");
+        System.out.println("\t\t\t\t\t ------------------------------------------ ");
+        System.out.println("\t\t\t\t\t| 1 : Register an account                  |");
+        System.out.println("\t\t\t\t\t| 2 : Login                                |");
+        System.out.println("\t\t\t\t\t| 3 : Exit                                 |");
+        System.out.println("\t\t\t\t\t ------------------------------------------\n");
     }
 
     static void accMenu() {
-        System.out.println("\t\t\t --------------------------");
-        System.out.println("\t\t\t|         ACCOUNT          |");
-        System.out.println("\t\t\t --------------------------");
-        System.out.println("\t\t\t|     1 : Edit             |");
-        System.out.println("\t\t\t|     2 : Delete           |");
-        System.out.println("\t\t\t|     3 : Back             |");
-        System.out.println("\t\t\t --------------------------");
+        System.out.println("\t\t\t\t\t\t --------------------------");
+        System.out.println("\t\t\t\t\t\t|         ACCOUNT          |");
+        System.out.println("\t\t\t\t\t\t --------------------------");
+        System.out.println("\t\t\t\t\t\t|     1 : Edit             |");
+        System.out.println("\t\t\t\t\t\t|     2 : Delete           |");
+        System.out.println("\t\t\t\t\t\t|     3 : Back             |");
+        System.out.println("\t\t\t\t\t\t --------------------------");
     }
 
     static void exitMessage() {
-        System.out.println("\t\t\tYOU CHOSE TO EXIT THE SYSTEM...");
-        System.out.println("\t\t\tHAVE A NICE DAY!!!!");
+        System.out.println("\t\t\t\t\tYOU CHOSE TO EXIT THE SYSTEM...");
+        System.out.println("\t\t\t\t\tHAVE A NICE DAY!!!!");
     }
 }
 
@@ -90,7 +90,7 @@ public class BusTicketingSystem {
         Menu.welcomeMessage();
         while (flag != Flags.EXIT) {
             showMenu();
-            System.out.print("\n\t\t\tWhat is your choice: ");
+            System.out.print("\n\t\t\t\t\tWhat is your choice: ");
             choice = scanner.nextInt();
             parseChoice();
         }
@@ -190,18 +190,18 @@ public class BusTicketingSystem {
     }
 
     private static void performLogin() {
-        System.out.printf("\t\t\tEnter your username :");
+        System.out.printf("\t\t\t\t\tEnter your username :");
         scanner.nextLine();
         String userName = scanner.nextLine();
         //System.out.println(userName);
 
-        System.out.printf("\n\t\t\tEnter your password :");
+        System.out.printf("\n\t\t\t\t\tEnter your password :");
         String password = scanner.nextLine();
         //System.out.println(password);
 
         Customer customer = Customer.search(userName, password);
         if (customer == null) {
-            System.out.println("\n\t\t\tUser doesn't exist");
+            System.out.println("\n\t\t\t\t\tUser doesn't exist");
             flag = Flags.NO_LOGIN;
             loggedInUser = null;
             return;
@@ -217,15 +217,15 @@ public class BusTicketingSystem {
         char matrix[][] = new char[11][10];
 
         do {
-            System.out.println("\t\t\t *=====================*");
-            System.out.println("\t\t\t |     Reservation     |");
-            System.out.println("\t\t\t *=====================*");
-            System.out.println("\t\t\t | [1] Destination     |");
-            System.out.println("\t\t\t | [2] Booking Ticket  |");
-            System.out.println("\t\t\t | [3] Exit            |");
-            System.out.println("\t\t\t *=====================*");
+            System.out.println("\t\t\t\t\t\t *=====================*");
+            System.out.println("\t\t\t\t\t\t |     Reservation     |");
+            System.out.println("\t\t\t\t\t\t *=====================*");
+            System.out.println("\t\t\t\t\t\t | [1] Destination     |");
+            System.out.println("\t\t\t\t\t\t | [2] Booking Ticket  |");
+            System.out.println("\t\t\t\t\t\t | [3] Exit            |");
+            System.out.println("\t\t\t\t\t\t *=====================*");
             System.out.println("");
-            System.out.print(" \t\t\t Enter your choice : ");
+            System.out.print(" \t\t\t\t\t\t Enter your choice : ");
             selection = scanner.nextInt();
 
             Customer.parseTicketUserChoice(selection, destination, matrix);

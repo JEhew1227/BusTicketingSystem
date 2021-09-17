@@ -67,9 +67,9 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "\t\t\tAmount = " + amount 
-              +"\n\t\t\tquantity = " + quantity 
-              +"\n\t\t\tpaidStatus = " + paidStatus;
+        return "\t\t\t\t\tAmount = " + amount 
+              +"\n\t\t\t\t\tQuantity = " + quantity 
+              +"\n\t\t\t\t\tPaidStatus = " + paidStatus;
     }
 
 }

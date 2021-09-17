@@ -52,17 +52,17 @@ public class Receipt extends Transaction{
     public static String printReceipt(Ticket ticket, Customer customer) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDateTime now = LocalDateTime.now();
-        return   "\t\t\t ===========================\n"
-                +"\t\t\t          Receipt           \n"
-                +"\t\t\t ===========================\n"
-                +"\t\t\t Customer Name  3:"+customer.getName()+"\n"
-                +"\t\t\t Date Paid      :"+dtf.format(now)+      "\n"
-                +"\t\t\t Paid Status    :"+ticket.isPaidStatus()+"\n"
-                +"\t\t\t No.of tickets  :"+ticket.getQuantity() +"\n"
-                +"\t\t\t ===========================\n"
-                +"\t\t\t Amount paid(RM): " + ticket.calTotal()+"\n"
-                +"\t\t\t ===========================\n\n"
-                +"\t\t\tThank you and till next time:)";
+        return   "\t\t\t\t\t\t ===========================\n"
+                +"\t\t\t\t\t\t          Receipt           \n"
+                +"\t\t\t\t\t\t ===========================\n"
+                +"\t\t\t\t\t\t Customer Name  :"+customer.getName()+"\n"
+                +"\t\t\t\t\t\t Date Paid      :"+dtf.format(now)+      "\n"
+                +"\t\t\t\t\t\t Paid Status    :"+ticket.isPaidStatus()+"\n"
+                +"\t\t\t\t\t\t No.of tickets  :"+ticket.getQuantity() +"\n"
+                +"\t\t\t\t\t\t ===========================\n"
+                +"\t\t\t\t\t\t Amount paid(RM): " + ticket.calTotal()+"\n"
+                +"\t\t\t\t\t\t ===========================\n\n"
+                +"\t\t\t\t\tThank you and till next time:)";
     }
 
 }
