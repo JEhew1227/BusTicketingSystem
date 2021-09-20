@@ -93,6 +93,7 @@ public class BusTicketingSystem {
 
     public static void main(String[] args) throws InterruptedException, IOException {
         init();
+        cls();
         logo();
         Menu.welcomeMessage();
         while (flag != Flags.EXIT) {
