@@ -100,18 +100,18 @@ public class BusTicketingSystem {
             System.out.print("\n\t\t\t\t\tWhat is your choice: ");
             boolean inputError = true;
             do {
-                try {
-                    
+                try {   
                     choice = scanner.nextInt();
                     inputError = false;
                     parseChoice();
                     pressEnterKey();
+                    cls();
                 } catch (InputMismatchException e) {
                     System.out.println("\t\t\t\t\tUnavailable Choice");
                     System.out.print("\t\t\t\t\tPlease reenter:");
                     scanner.next();
                 }
-            } while (inputError = true);
+            } while (inputError == true);
             
         }
 
