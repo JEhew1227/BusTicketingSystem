@@ -7,10 +7,13 @@ package Management;
 
 import Asset.Schedule;
 import Asset.Ticket;
+import static Management.Menu.logo;
 import Personnal.Customer;
 import Registration.Registration;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 import payment.Payment;
 
 /**
@@ -67,6 +70,14 @@ interface Menu {
         System.out.println("\t\t\t\t\tYOU CHOSE TO EXIT THE SYSTEM...");
         System.out.println("\t\t\t\t\tHAVE A NICE DAY!!!!");
     }
+
+    static void logo() {
+        System.out.println("\t\t\t ___ _   _ ___   _____ ___ ___ _  _____ _____ ___ _  _  ___   _____   _____ _____ ___ __  __ ");
+        System.out.println("\t\t\t| _ ) | | / __| |_   _|_ _/ __| |/ / __|_   _|_ _| \\| |/ __| / __\\ \\ / / __|_   _| __|  \\/  |");
+        System.out.println("\t\t\t| _ \\ |_| \\__ \\   | |  | | (__| ' <| _|  | |  | || .` | (_ | \\__ \\\\ V /\\__ \\ | | | _|| |\\/| |");
+        System.out.println("\t\t\t|___/\\___/|___/   |_| |___\\___|_|\\_\\___| |_| |___|_|\\_|\\___| |___/ |_| |___/ |_| |___|_|  |_|");
+        System.out.println("");
+    }
 }
 
 public class BusTicketingSystem {
@@ -82,35 +93,39 @@ public class BusTicketingSystem {
 
     public static void main(String[] args) throws InterruptedException, IOException {
         init();
-        cls();
-        System.out.println("\t\t\t ___ _   _ ___   _____ ___ ___ _  _____ _____ ___ _  _  ___   _____   _____ _____ ___ __  __ ");
-        System.out.println("\t\t\t| _ ) | | / __| |_   _|_ _/ __| |/ / __|_   _|_ _| \\| |/ __| / __\\ \\ / / __|_   _| __|  \\/  |");
-        System.out.println("\t\t\t| _ \\ |_| \\__ \\   | |  | | (__| ' <| _|  | |  | || .` | (_ | \\__ \\\\ V /\\__ \\ | | | _|| |\\/| |");
-        System.out.println("\t\t\t|___/\\___/|___/   |_| |___\\___|_|\\_\\___| |_| |___|_|\\_|\\___| |___/ |_| |___/ |_| |___|_|  |_|");
-        System.out.println("");
+        logo();
         Menu.welcomeMessage();
         while (flag != Flags.EXIT) {
             showMenu();
             System.out.print("\n\t\t\t\t\tWhat is your choice: ");
-            choice = scanner.nextInt();
-            parseChoice();
-            pressEnterKey();
-            cls();
+            boolean inputError = true;
+            do {
+                try {
+                    
+                    choice = scanner.nextInt();
+                    inputError = false;
+                    parseChoice();
+                    pressEnterKey();
+                } catch (InputMismatchException e) {
+                    System.out.println("\t\t\t\t\tUnavailable Choice");
+                    System.out.print("\t\t\t\t\tPlease reenter:");
+                    scanner.next();
+                }
+            } while (inputError = true);
+            
         }
-        
+
     }
-    
+
     public static void cls() throws InterruptedException, IOException {
         try {
-            // windows clear screen command
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         } catch (InterruptedException | IOException e) {
-            // linux clear screen command
             new ProcessBuilder("clear").inheritIO().start().waitFor();
         }
     }
-    
-    public static void pressEnterKey(){
+
+    public static void pressEnterKey() {
         System.out.println("\t\t\t\t\tPress \"ENTER\" to continue...");
         try {
             int read = System.in.read(new byte[2]);
@@ -118,7 +133,7 @@ public class BusTicketingSystem {
             e.printStackTrace();
         }
     }
-    
+
     private static void parseChoice() {
         switch (flag) {
             case Flags.NO_LOGIN:
@@ -133,7 +148,7 @@ public class BusTicketingSystem {
         }
     }
 
-    private static void parseRegistration(){
+    private static void parseRegistration() {
         switch (choice) {
             case 1:
                 System.out.println("\t\t\t\t\t\t=====================");
@@ -142,12 +157,14 @@ public class BusTicketingSystem {
                 Registration.performRegistration();
                 break;
             case 2:
-              
                 performLogin();
                 break;
             case 3:
                 Menu.exitMessage();
                 flag = Flags.EXIT;
+                break;
+            default:
+                System.out.println("\t\t\t\t\tPlease Enter A Valid Choice!");
                 break;
         }
     }
@@ -166,6 +183,11 @@ public class BusTicketingSystem {
             case 4:
                 logOut();
                 break;
+            default:
+                System.out.println("\t\t\t\t\tPlease enter a valid choice");
+                pressEnterKey();
+                break;
+
         }
     }
 
